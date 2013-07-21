@@ -1,0 +1,18 @@
+/*------------------------------------------------------------------
+
+[Custom Stylesheet]
+
+
+Last change:	03/25/2013
+Assigned to:	You
+
+-------------------------------------------------------------------*/
+
+.pagination {
+    margin: 10px 0;
+}
+
+.admin{
+	font-size:15px !important;
+	color: #FF9900 !important;
+}
