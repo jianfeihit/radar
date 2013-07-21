@@ -1,11 +1,11 @@
 <?php
-class KeywordAction extends Action {
+class SearchAction extends Action {
 
-    public function query(){
-       $this->display('./Tpl/keyword/querykeyword.html');
+    public function intranet(){
+       $this->display('./Tpl/search/queryintranet.html');
     }
 
-    public function add(){
-       $this->display('./Tpl/keyword/addkeyword.html');
+    public function internet(){
+       $this->display('./Tpl/search/queryinternet.html');
     }
 }

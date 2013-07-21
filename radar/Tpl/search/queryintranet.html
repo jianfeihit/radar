@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>关键词</title>
+  </head>
+<body>
+<!-- 主区域 -->    
+<div class="main">
+    <div class="container">
+      <div class="row">
+      	<div class="span12">
+			<div class="widget stacked widget-table action-table">
+					
+				<div class="widget-header">
+					<i class="icon-th-list"></i>
+					<h3>全网搜索</h3>
+				</div>
+				<div class="widget-content">
+				    <form class="form-search pagination text-center">
+   
+    <div>
+                                <input type="text" class="input-xxlarge">
+                                <button type="submit" class="btn glow  btn-primary">Search</button>
+                               </div>
+                                <div>
+                                    <label class="checkbox inline">
+    <input type="checkbox" id="inlineCheckbox1" value="option1"> 百度
+    </label>
+    <label class="checkbox inline">
+    <input type="checkbox" id="inlineCheckbox2" value="option2"> 谷歌
+    </label>
+    <label class="checkbox inline">
+    <input type="checkbox" id="inlineCheckbox3" value="option3"> 必应
+    </label>
+    <label class="checkbox inline">
+    <input type="checkbox" id="inlineCheckbox3" value="option3"> 搜狗
+    </label>
+    <label class="checkbox inline">
+    <input type="checkbox" id="inlineCheckbox3" value="option3"> 360搜索
+    </label>
+                                </div>
+    </form>
+						   
+				</div>
+			</div>
+		</div>
+    </div>
+</div>
+
+<script src="../Public/js/bootstrap-paginator.min.js"></script>
+<script type="text/javascript">
+var options = {
+            currentPage: 4,
+            totalPages: 10,
+	    	numberOfPages:5
+        }
+
+$('#example').bootstrapPaginator(options);
+</script>
+</body>
+</html>
