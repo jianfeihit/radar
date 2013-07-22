@@ -46,10 +46,11 @@
 							</tr>
 						</thead>
 						<tbody>
+                                                <volist name="kdata" id="v">
 							<tr>
-								<td>北京</td>
-								<td>张三</td>
-								<td>2013-07-12</td>
+								<td>{$v.keyword}</td>
+								<td>{$v.operator}</td>
+								<td>{$v.addDate|date="Y-m-d",strtotime(###)}</td>
 								<td class="td-actions">
 									<a href="javascript:;" class="btn btn-small btn-warning">
 										<i class="btn-icon-only icon-ok"></i>										
@@ -59,79 +60,11 @@
 										<i class="btn-icon-only icon-remove"></i>										
 									</a>
 								</td>
-							</tr>
-							<tr>
-								<td>北京</td>
-								<td>张三</td>
-								<td>2013-07-12</td>
-								<td class="td-actions">
-									<a href="javascript:;" class="btn btn-small btn-warning">
-										<i class="btn-icon-only icon-ok"></i>										
-									</a>
-									
-									<a href="javascript:;" class="btn btn-small">
-										<i class="btn-icon-only icon-remove"></i>										
-									</a>
-								</td>
-							</tr>
-							<tr>
-								<td>北京</td>
-								<td>张三</td>
-								<td>2013-07-12</td>
-								<td class="td-actions">
-									<a href="javascript:;" class="btn btn-small btn-warning">
-										<i class="btn-icon-only icon-ok"></i>										
-									</a>
-									
-									<a href="javascript:;" class="btn btn-small">
-										<i class="btn-icon-only icon-remove"></i>										
-									</a>
-								</td>
-							</tr>
-							<tr>
-								<td>北京</td>
-								<td>张三</td>
-								<td>2013-07-12</td>
-								<td class="td-actions">
-									<a href="javascript:;" class="btn btn-small btn-warning">
-										<i class="btn-icon-only icon-ok"></i>										
-									</a>
-									
-									<a href="javascript:;" class="btn btn-small">
-										<i class="btn-icon-only icon-remove"></i>										
-									</a>
-								</td>
-							</tr>
-							<tr>
-								<td>北京</td>
-								<td>张三</td>
-								<td>2013-07-12</td>
-								<td class="td-actions">
-									<a href="javascript:;" class="btn btn-small btn-warning">
-										<i class="btn-icon-only icon-ok"></i>										
-									</a>
-									
-									<a href="javascript:;" class="btn btn-small">
-										<i class="btn-icon-only icon-remove"></i>										
-									</a>
-								</td>
-							</tr>
-							<tr>
-								<td>北京</td>
-								<td>张三</td>
-								<td>2013-07-12</td>
-								<td class="td-actions">
-									<a href="javascript:;" class="btn btn-small btn-warning">
-										<i class="btn-icon-only icon-ok"></i>										
-									</a>
-									
-									<a href="javascript:;" class="btn btn-small">
-										<i class="btn-icon-only icon-remove"></i>										
-									</a>
-								</td>
-							</tr>						
-							</tbody>
+							</tr>	
+                                                  </volist>			
+					  </tbody>
 						</table>
+					{$page}
 						
 				</div>
 				<div class="widget-content text-right">
