@@ -1,11 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta charset="utf-8">
-    <title>关键词</title>
-  </head>
-<body>
 <!-- 主区域 -->    
 <div class="main">
     <div class="container">
@@ -19,8 +11,8 @@
 				</div>
 				<div class="widget-content">
 				
-						    <form class="pagination form-inline text-center">
-    <input type="text" placeholder="Email">
+						    <form class="pagination form-inline text-center" action="__URL__/query">
+    <input type="text" name="siteName" id="siteName"placeholder="网站名称">
     <button type="submit" class="btn glow  btn-primary">查询</button>
     </form>
 					
@@ -41,13 +33,6 @@
 							<tr>
 								<th>网站名称</th>
 								<th>入口地址</th>
-								<th>主域名</th>
-								<th>域名对应的IP</th>
-								<th>网络运营商</th>
-								<th>所在城市</th>
-								<th>管理员姓名</th>
-								<th>管理员联系电话</th>
-								<th>管理员邮箱</th>
 								<th>监控频率</th>
 								<th>监控模式</th>
 								<th>状态</th>
@@ -59,171 +44,31 @@
 							</tr>
 						</thead>
 						<tbody>
+							<volist name="kdata" id="v">
 							<tr class="warning">
-								<td>北京</td>
-								<td>张三</td>
-								<td>北京</td>
-								<td>张三</td>
-								<td>北京</td>
-								<td>张三</td>
-								<td>北京</td>
-								<td>张三</td>
-								<td>北京</td>
-								<td>张三</td>
-								<td>北京</td>
-								<td>张三</td>
-								<td>北京</td>
-								<td>张三</td>
-								<td>北京</td>
-								<td>张三</td>
+								<td>{$v.siteName}</td>
+								<td><a href="{$v.feedUrl}" target="_blank">{$v.feedUrl}</a></td>
+								<td>{$v.monitorExp}</td>
+								<td>{$v.runMode}</td>
+								<td>{$v.state}</td>
+								<td>{$v.lastupdatetime}</td>
+								<td>{$v.keywords}</td>
+								<td>100</td>
+								<td>10</td>
 								<td class="td-actions">
-									<a href="javascript:;" class="btn btn-small btn-warning">
-										<i class="btn-icon-only icon-ok"></i>										
+									<a href="__URL__/edit?id={$v.id}" class="btn btn-small btn-warning">
+										<i class="btn-icon-only icon-edit"></i>
 									</a>
 									
 									<a href="javascript:;" class="btn btn-small">
-										<i class="btn-icon-only icon-remove"></i>										
+										<i class="btn-icon-only icon-remove"></i>
 									</a>
 								</td>
 							</tr>
-							<tr class="success">
-								<td>北京</td>
-								<td>张三</td>
-								<td>北京</td>
-								<td>张三</td>
-								<td>北京</td>
-								<td>张三</td>
-								<td>北京</td>
-								<td>张三</td>
-								<td>北京</td>
-								<td>张三</td>
-								<td>北京</td>
-								<td>张三</td>
-								<td>北京</td>
-								<td>张三</td>
-								<td>北京</td>
-								<td>张三</td>
-								<td class="td-actions">
-									<a href="javascript:;" class="btn btn-small btn-warning">
-										<i class="btn-icon-only icon-ok"></i>										
-									</a>
-									
-									<a href="javascript:;" class="btn btn-small">
-										<i class="btn-icon-only icon-remove"></i>										
-									</a>
-								</td>
-							</tr>
-							<tr class="error">
-								<td>北京</td>
-								<td>张三</td>
-								<td>北京</td>
-								<td>张三</td>
-								<td>北京</td>
-								<td>张三</td>
-								<td>北京</td>
-								<td>张三</td>
-								<td>北京</td>
-								<td>张三</td>
-								<td>北京</td>
-								<td>张三</td>
-								<td>北京</td>
-								<td>张三</td>
-								<td>北京</td>
-								<td>张三</td>
-								<td class="td-actions">
-									<a href="javascript:;" class="btn btn-small btn-warning">
-										<i class="btn-icon-only icon-ok"></i>										
-									</a>
-									
-									<a href="javascript:;" class="btn btn-small">
-										<i class="btn-icon-only icon-remove"></i>										
-									</a>
-								</td>
-							</tr>
-							<tr>
-								<td>北京</td>
-								<td>张三</td>
-								<td>北京</td>
-								<td>张三</td>
-								<td>北京</td>
-								<td>张三</td>
-								<td>北京</td>
-								<td>张三</td>
-								<td>北京</td>
-								<td>张三</td>
-								<td>北京</td>
-								<td>张三</td>
-								<td>北京</td>
-								<td>张三</td>
-								<td>北京</td>
-								<td>张三</td>
-								<td class="td-actions">
-									<a href="javascript:;" class="btn btn-small btn-warning">
-										<i class="btn-icon-only icon-ok"></i>										
-									</a>
-									
-									<a href="javascript:;" class="btn btn-small">
-										<i class="btn-icon-only icon-remove"></i>										
-									</a>
-								</td>
-							</tr>
-							<tr>
-								<td>北京</td>
-								<td>张三</td>
-								<td>北京</td>
-								<td>张三</td>
-								<td>北京</td>
-								<td>张三</td>
-								<td>北京</td>
-								<td>张三</td>
-								<td>北京</td>
-								<td>张三</td>
-								<td>北京</td>
-								<td>张三</td>
-								<td>北京</td>
-								<td>张三</td>
-								<td>北京</td>
-								<td>张三</td>
-								<td class="td-actions">
-									<a href="javascript:;" class="btn btn-small btn-warning">
-										<i class="btn-icon-only icon-ok"></i>										
-									</a>
-									
-									<a href="javascript:;" class="btn btn-small">
-										<i class="btn-icon-only icon-remove"></i>										
-									</a>
-								</td>
-							</tr>
-							<tr>
-								<td>北京</td>
-								<td>张三</td>
-								<td>北京</td>
-								<td>张三</td>
-								<td>北京</td>
-								<td>张三</td>
-								<td>北京</td>
-								<td>张三</td>
-								<td>北京</td>
-								<td>张三</td>
-								<td>北京</td>
-								<td>张三</td>
-								<td>北京</td>
-								<td>张三</td>
-								<td>北京</td>
-								<td>张三</td>
-								<td class="td-actions">
-									<a href="javascript:;" class="btn btn-small btn-warning">
-										<i class="btn-icon-only icon-ok"></i>										
-									</a>
-									
-									<a href="javascript:;" class="btn btn-small">
-										<i class="btn-icon-only icon-remove"></i>										
-									</a>
-								</td>
-							</tr>						
+							</volist>
 							</tbody>
 						</table>
-						
+						{$page}
 				</div>
 				<div class="widget-content text-right">
 				<div id="example" class="pagination10"></div>
@@ -243,5 +88,3 @@ var options = {
 
 $('#example').bootstrapPaginator(options);
 </script>
-</body>
-</html>
