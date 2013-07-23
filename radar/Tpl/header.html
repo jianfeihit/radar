@@ -10,12 +10,12 @@
                 <ul class="nav pull-right">
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle admin" data-toggle="dropdown">
-                            <i class="icon-user"></i>张三<b class="caret"></b>
+                            <i class="icon-user"></i>{$Think.session.loginuser.userName}<b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
                             <li><a href="javascript:;">个人信息</a></li>
                             <li class="divider"></li>
-                            <li><a href="javascript:;">退出</a></li>
+                            <li><a href="{:U('Login/loginout')}">退出</a></li>
                         </ul>
                     </li>
                 </ul>
