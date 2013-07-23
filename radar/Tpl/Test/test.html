@@ -12,5 +12,30 @@
       URL:{__URL__}<br/>
       ../Public<br/>
       __APP__<br> -->
+      value=1   +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++<br>
+      <?php $count=0; ?>
+      <foreach name="kp" item="vo" key="k">
+      <?php $count=$count+1; ?>
+        <if condition="$count%2==1">
+        {$k}{$count}
+         <volist name="vo" id="p">
+          {$p.title}
+         </volist> 
+         <br>
+         </if>
+      </foreach>
+
+      value=0   +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++<br>
+      <?php $count=0; ?>
+      <foreach name="kp" item="vo" key="k">
+        <?php $count=$count+1; ?>
+        <if condition="$count%2==0">
+        {$k}
+         <volist name="vo" id="p">
+          {$p.title}
+         </volist> 
+         <br>
+         </if>
+      </foreach>
   </body>
   </html>

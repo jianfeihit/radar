@@ -1,42 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta charset="utf-8">
-    <title>首页</title>
-	<style type="text/css">
-	#allmap {width: 553;height: 268}
-	</style>
-  </head>
-<body>
 <div class="main">
     <div class="container">
       <div class="row">
 		<div class="span12">
 		<div class="widget big-stats-container stacked">
       			<div class="widget-content">
-      				
 		      		<div class="cf" id="big_stats">
 						<div class="stat">								
 							<h4>累计监控站点</h4>
-							<span class="value">12,386</span>								
-						</div> <!-- .stat -->
-						
+							<span class="value">12,386</span>
+						</div> 
 						<div class="stat">								
 							<h4>累计监控记录数</h4>
-							<span class="value">23</span>								
-						</div> <!-- .stat -->
-						
+							<span class="value">23</span>
+						</div> 
 						<div class="stat">								
 							<h4>累计发现可疑记录数</h4>
 							<span class="value">2</span>
-						</div> <!-- .stat -->
+						</div> 
 					</div>
-				</div> <!-- /widget-content -->
-				
+				</div>
 			</div>
 		</div>
-	  
       	<div class="span6">
       		<div class="widget stacked">
 				<div class="widget-header">
@@ -47,88 +31,43 @@
 					<img src="http://api.map.baidu.com/staticimage?center=%E5%A4%A9%E5%AE%89%E9%97%A8&width=553&height=268&zoom=16&markers=%E5%A4%A9%E5%AE%89%E9%97%A8&markerStyles=-1,http://api.map.baidu.com/images/marker_red.png,-1,23,25"/>
 				</div>
 			</div>
-			<!--可疑信息1-->
+			
+			<!--输出奇数行-->
+			<?php $count=0; ?>
+      		<foreach name="kp" item="vo" key="k">
+      		<?php $count=$count+1; ?>
+      		<if condition="$count%2==1">
 			<div class="widget widget-nopad stacked">
 				<div class="widget-header">
 					<i class="icon-list-alt"></i>
-					<h3>北京</h3>
+					<h3>{$k}</h3>
 				</div>
 				<div class="widget-content">
 					<ul class="news-items">
+						<volist name="vo" id="p">
 						<li>
-							<div class="news-item-detail">										
-								<a href="javascript:;" class="news-item-title">实拍永定河畔的普罗旺斯</a>
-								<p class="news-item-preview">2013年7月6日，国营北京市卢沟桥农场规划建设的集观光、旅游、休闲、婚纱摄影、婚庆典礼于一体的紫谷伊甸园正式向社会开放...</p>
+							<div class="news-item-detail">
+								<a href="javascript:;" class="news-item-title">{$p.title}</a>
+								<p class="news-item-preview">
+								<if condition="strlen('$p.digist') lt 50">
+									{$p.digist|msubstr=0,50,'utf-8',true}
+								<else />
+									{$v.digist}
+								</if>
+								</p>
 							</div>
 							<div class="news-item-date">
-								<span class="news-item-day">06</span>
-								<span class="news-item-month">7月</span>
+								<span class="news-item-day">{$p.day}</span>
+								<span class="news-item-month">{$p.month}月</span>
 							</div>
 						</li>
-						<li>
-							<div class="news-item-detail">										
-								<a href="javascript:;" class="news-item-title">葛兰素史克案内幕：高管接受性贿赂</a>
-								<p class="news-item-preview">葛兰素史克中国为达到打开药品销售渠道、提高药品售价等目的，利用旅行社等渠道，向个别政府部门官员、基金会、医院、医生等行贿。</p>
-							</div>
-							<div class="news-item-date">
-								<span class="news-item-day">06</span>
-								<span class="news-item-month">7月</span>
-							</div>
-						</li>
-						<li>
-							<div class="news-item-detail">										
-								<a href="javascript:;" class="news-item-title">北京被指今夏暴雨预警过头</a>
-								<p class="news-item-preview">今夏频发预警，但狂风暴雨并没有来。有人质疑是不是预警过头了，北京防汛办总工程师刘洪伟表示，预报确实没有那么精准。</p>
-							</div>
-							<div class="news-item-date">
-								<span class="news-item-day">06</span>
-								<span class="news-item-month">7月</span>
-							</div>
-						</li>
-					</ul>
-				</div> <!-- /widget-content -->
-			</div>
-			<!--可疑信息2-->
-			<div class="widget widget-nopad stacked">
-				<div class="widget-header">
-					<i class="icon-list-alt"></i>
-					<h3>北京</h3>
-				</div>
-				<div class="widget-content">
-					<ul class="news-items">
-						<li>
-							<div class="news-item-detail">										
-								<a href="javascript:;" class="news-item-title">实拍永定河畔的普罗旺斯</a>
-								<p class="news-item-preview">2013年7月6日，国营北京市卢沟桥农场规划建设的集观光、旅游、休闲、婚纱摄影、婚庆典礼于一体的紫谷伊甸园正式向社会开放...</p>
-							</div>
-							<div class="news-item-date">
-								<span class="news-item-day">06</span>
-								<span class="news-item-month">7月</span>
-							</div>
-						</li>
-						<li>
-							<div class="news-item-detail">										
-								<a href="javascript:;" class="news-item-title">葛兰素史克案内幕：高管接受性贿赂</a>
-								<p class="news-item-preview">葛兰素史克中国为达到打开药品销售渠道、提高药品售价等目的，利用旅行社等渠道，向个别政府部门官员、基金会、医院、医生等行贿。</p>
-							</div>
-							<div class="news-item-date">
-								<span class="news-item-day">06</span>
-								<span class="news-item-month">7月</span>
-							</div>
-						</li>
-						<li>
-							<div class="news-item-detail">										
-								<a href="javascript:;" class="news-item-title">北京被指今夏暴雨预警过头</a>
-								<p class="news-item-preview">今夏频发预警，但狂风暴雨并没有来。有人质疑是不是预警过头了，北京防汛办总工程师刘洪伟表示，预报确实没有那么精准。</p>
-							</div>
-							<div class="news-item-date">
-								<span class="news-item-day">06</span>
-								<span class="news-item-month">7月</span>
-							</div>
-						</li>
+						</volist>
 					</ul>
 				</div>
 			</div>
+			</eq>
+			</if>
+			</foreach>
 	    </div>
 		
       	<div class="span6">	
@@ -141,88 +80,43 @@
 					<img src="../Public/imgs/charts.png"/>
 				</div>
 			</div>
-			<!--可疑信息3-->
+
+			<!--输出偶数行-->
+			<?php $count=0; ?>
+      		<foreach name="kp" item="vo" key="k">
+      		<?php $count=$count+1; ?>
+      		<if condition="$count%2==0">
 			<div class="widget widget-nopad stacked">
 				<div class="widget-header">
 					<i class="icon-list-alt"></i>
-					<h3>北京</h3>
+					<h3>{$k}</h3>
 				</div>
 				<div class="widget-content">
 					<ul class="news-items">
+						<volist name="vo" id="p">
 						<li>
-							<div class="news-item-detail">										
-								<a href="javascript:;" class="news-item-title">实拍永定河畔的普罗旺斯</a>
-								<p class="news-item-preview">2013年7月6日，国营北京市卢沟桥农场规划建设的集观光、旅游、休闲、婚纱摄影、婚庆典礼于一体的紫谷伊甸园正式向社会开放...</p>
+							<div class="news-item-detail">
+								<a href="javascript:;" class="news-item-title">{$p.title}</a>
+								<p class="news-item-preview">
+								<if condition="strlen('$p.digist') lt 80">
+									{$p.digist|msubstr=0,80,'utf-8',true}
+								<else />
+									{$v.digist}
+								</if>
+								</p>
 							</div>
 							<div class="news-item-date">
-								<span class="news-item-day">06</span>
-								<span class="news-item-month">7月</span>
+								<span class="news-item-day">{$p.day}</span>
+								<span class="news-item-month">{$p.month}月</span>
 							</div>
 						</li>
-						<li>
-							<div class="news-item-detail">										
-								<a href="javascript:;" class="news-item-title">葛兰素史克案内幕：高管接受性贿赂</a>
-								<p class="news-item-preview">葛兰素史克中国为达到打开药品销售渠道、提高药品售价等目的，利用旅行社等渠道，向个别政府部门官员、基金会、医院、医生等行贿。</p>
-							</div>
-							<div class="news-item-date">
-								<span class="news-item-day">06</span>
-								<span class="news-item-month">7月</span>
-							</div>
-						</li>
-						<li>
-							<div class="news-item-detail">										
-								<a href="javascript:;" class="news-item-title">北京被指今夏暴雨预警过头</a>
-								<p class="news-item-preview">今夏频发预警，但狂风暴雨并没有来。有人质疑是不是预警过头了，北京防汛办总工程师刘洪伟表示，预报确实没有那么精准。</p>
-							</div>
-							<div class="news-item-date">
-								<span class="news-item-day">06</span>
-								<span class="news-item-month">7月</span>
-							</div>
-						</li>
+						</volist>
 					</ul>
 				</div> <!-- /widget-content -->
-			</div> <!-- /widget -->	
-	    	<!--可疑信息4-->
-			<div class="widget widget-nopad stacked">
-				<div class="widget-header">
-					<i class="icon-list-alt"></i>
-					<h3>北京</h3>
-				</div>
-				<div class="widget-content">
-					<ul class="news-items">
-						<li>
-							<div class="news-item-detail">										
-								<a href="javascript:;" class="news-item-title">实拍永定河畔的普罗旺斯</a>
-								<p class="news-item-preview">2013年7月6日，国营北京市卢沟桥农场规划建设的集观光、旅游、休闲、婚纱摄影、婚庆典礼于一体的紫谷伊甸园正式向社会开放...</p>
-							</div>
-							<div class="news-item-date">
-								<span class="news-item-day">06</span>
-								<span class="news-item-month">7月</span>
-							</div>
-						</li>
-						<li>
-							<div class="news-item-detail">										
-								<a href="javascript:;" class="news-item-title">葛兰素史克案内幕：高管接受性贿赂</a>
-								<p class="news-item-preview">葛兰素史克中国为达到打开药品销售渠道、提高药品售价等目的，利用旅行社等渠道，向个别政府部门官员、基金会、医院、医生等行贿。</p>
-							</div>
-							<div class="news-item-date">
-								<span class="news-item-day">06</span>
-								<span class="news-item-month">7月</span>
-							</div>
-						</li>
-						<li>
-							<div class="news-item-detail">										
-								<a href="javascript:;" class="news-item-title">北京被指今夏暴雨预警过头</a>
-								<p class="news-item-preview">今夏频发预警，但狂风暴雨并没有来。有人质疑是不是预警过头了，北京防汛办总工程师刘洪伟表示，预报确实没有那么精准。</p>
-							</div>
-							<div class="news-item-date">
-								<span class="news-item-day">06</span>
-								<span class="news-item-month">7月</span>
-							</div>
-						</li>
-					</ul>
-				</div> <!-- /widget-content -->
-			</div> 			
+			</div>
+			</eq>
+			</if>
+			</foreach>
 	      </div>
       </div>
     </div>

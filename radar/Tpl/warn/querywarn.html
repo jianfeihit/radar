@@ -5,11 +5,26 @@
 				<div class="widget stacked widget-table action-table">
 
 					<div class="widget-header"> <i class="icon-th-list"></i>
-						<h3>查询条件</h3>
+						<h3>查询告警信息</h3>
 					</div>
 					<div class="widget-content">
-						<form class="pagination form-inline text-center" action="__URL__/query">
-							<input type="text" placeholder="test">
+						<form class="pagination10 form-inline text-center" action="__URL__/query">
+							<div class="input-prepend">
+								<div class="btn-group">
+									<button class="btn dropdown-toggle" data-toggle="dropdown">
+										查询类型
+										<span class="caret"></span>
+									</button>
+									<ul class="dropdown-menu">
+										<li>
+											<a href="#">关键词</a>
+										</li>
+										<li>
+											<a href="#">网站名称</a>
+										</li>
+									</ul>
+								</div>
+								<input class="input-xlarge" type="text"></div>
 							<button type="submit" class="btn glow  btn-primary">查询</button>
 						</form>
 
@@ -18,66 +33,86 @@
 			</div>
 			<div class="span12">
 				<div class="widget stacked widget-table action-table">
-					<div class="widget-header"> <i class="icon-th-list"></i>
-						<h3>查询结果</h3>
-					</div>
 					<div class="widget-content">
 						<table class="table table-striped table-bordered  table-highlight">
 							<thead>
 								<tr>
+									<th width="2%">
+										<input type="checkbox" name="keywords[]" value="{$keyword.keyword}"></th>
 									<th width="7%">网站名称</th>
-									<th width="6%">关键词</th>
-									<th width="10%">新闻标题</th>
-									<th width="25%">新闻摘要</th>
-									<th width="5%">检测时间</th>
-									<th width="7%">是否已处理</th>
-									<th width="5%">是否已生成简报</th>
+									<th width="7%">关键词</th>
+									<th width="15%">新闻标题</th>
+									<th width="30%">新闻摘要</th>
+									<th width="7%">检测时间</th>
+									<th width="7%">处理标志</th>
+									<th width="7%">简报标志</th>
 									<th width="10%" class="td-actions">操作</th>
 								</tr>
 							</thead>
 							<tbody>
 								<volist name="kdata" id="v">
-								<tr>
-									<td>北京</td>
-									<td>{$v.keyword}</td>
-									<td>{$v.title}</td>
-									<if condition="strlen('$v.digist') lt 50">
-									<td>{$v.digist|msubstr=0,50,'utf-8',true}</td>
-									<else />
-									<td>{$v.digist}</td>
-									</if>
-									<td>{$v.checkDate}</td>
-									<td>{$v.isHandle}</td>
-									<td>{$v.isReport}</td>
-									<td class="td-actions">
-										<a href="javascript:;" class="btn btn-small btn-warning">
-											<i class="btn-icon-only icon-ok" title="111"></i>
-										</a>
-										<a href="javascript:;" class="btn btn-small">
-											<i class="btn-icon-only icon-remove"></i>
-										</a>
-										<a href="{$v.link}" target="_blank" class="btn btn-small">查看链接
-										</a>
-									</td>
-								</tr>
+									<tr>
+										<td>
+											<input type="checkbox" name="keywords[]" value="{$keyword.keyword}"></td>
+										<td>{$v.siteName}</td>
+										<td>{$v.keyword}</td>
+										<td>{$v.title}</td>
+										<if condition="strlen('$v.digist') lt 50">
+											<td>{$v.digist|msubstr=0,50,'utf-8',true}</td>
+											<else />
+											<td>{$v.digist}</td>
+										</if>
+										<td>{$v.checkDate}</td>
+										<td>已处理</td>
+										<td>已生成</td>
+										<td class="td-actions">
+											<a href="javascript:sendmail()" class="btn btn-small btn-warning"> <i class="btn-icon-only icon-envelope" title="发送通知"></i>
+											</a>
+											<a href="__URL__/view?id={$v.id}" class="btn btn-small btn-warning">
+												<i class="btn-icon-only icon-zoom-in" title="查看详情"></i>
+											</a>
+											<a href="javascript:;" class="btn btn-small btn-warning">
+												<i class="btn-icon-only icon-refresh" title="重新检测"></i>
+											</a>
+											<a href="{$v.link}" target="_blank" class="btn btn-small btn-warning">
+												<i class="btn-icon-only icon-share-alt" title="查看链接"></i>
+											</a>
+										</td>
+									</tr>
 								</volist>
 							</tbody>
 						</table>
-
+						<!-- {$page} -->
 					</div>
-					<div class="widget-content text-right">
-						<div id="example" class="pagination10"></div>
+					<div class="widget-content">
+						<div class="text-left span5">
+							<button type="submit" class="btn glow pagination btn-primary text-left">生成简报</button>
+						</div>
+						<div class="text-right span6">
+							<div id="example"></div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	<script src="../Public/js/bootstrap-paginator.min.js"></script>
 	<script type="text/javascript">
-var options = {
+	var options = {
             currentPage: 4,
             totalPages: 10,
 	    	numberOfPages:5
         }
 
-$('#example').bootstrapPaginator(options);
+	$('#example').bootstrapPaginator(options);
+	$._messengerDefaults = {
+	extraClasses: 'messenger-fixed messenger-theme-future messenger-on-bottom messenger-on-right'
+	}
+	function sendmail(){
+		$.globalMessenger().post({
+  		message: '发送成功.',
+  		type: 'info',
+  		showCloseButton: true
+	});
+	}
 </script>

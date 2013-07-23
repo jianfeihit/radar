@@ -8,11 +8,15 @@ Assigned to:	You
 
 -------------------------------------------------------------------*/
 
-.pagination {
+.pagination,.pagination10 {
     margin: 10px 0;
 }
 
 .admin{
 	font-size:15px !important;
 	color: #FF9900 !important;
+}
+
+.dropdown-menu{
+    min-width:100px;
 }

@@ -31,16 +31,16 @@
 					<table class="table table-striped table-bordered  table-highlight">
 						<thead>
 							<tr>
-								<th>网站名称</th>
-								<th>入口地址</th>
-								<th>监控频率</th>
-								<th>监控模式</th>
-								<th>状态</th>
-								<th>最后修改时间</th>
-								<th>绑定关键词</th>
-								<th>检测网页数量</th>
-								<th>可疑网页数量</th>
-								<th class="td-actions">操作</th>
+								<th width="10%">网站名称</th>
+								<th width="7%">入口地址</th>
+								<th width="7%">监控频率</th>
+								<th width="7%">监控模式</th>
+								<th width="5%">状态</th>
+								<th width="20%">绑定关键词</th>
+								<th width="7%">检测网页</th>
+								<th width="7%">可疑网页</th>
+								<th width="10%">修改时间</th>
+								<th width="7%" class="td-actions">操作</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -48,16 +48,30 @@
 							<tr class="warning">
 								<td>{$v.siteName}</td>
 								<td><a href="{$v.feedUrl}" target="_blank">{$v.feedUrl}</a></td>
-								<td>{$v.monitorExp}</td>
-								<td>{$v.runMode}</td>
+								<td>
+								<if condition="v.monitorExp == 1">
+									每小时
+								<else />
+									每天
+								</if>
+								</td>
+								<td>
+								<if condition="v.runMode eq '0'">
+									主动模式
+								<else if condition="v.runMode eq '1'"/>
+									被动模式
+								<else />
+									两种都有
+								</if>
+								</td>
 								<td>{$v.state}</td>
-								<td>{$v.lastupdatetime}</td>
 								<td>{$v.keywords}</td>
 								<td>100</td>
 								<td>10</td>
+								<td>{$v.lastupdatetime}</td>
 								<td class="td-actions">
 									<a href="__URL__/edit?id={$v.id}" class="btn btn-small btn-warning">
-										<i class="btn-icon-only icon-edit"></i>
+										<i class="btn-icon-only icon-pencil"></i>
 									</a>
 									
 									<a href="javascript:;" class="btn btn-small">
