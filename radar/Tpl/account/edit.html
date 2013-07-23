@@ -1,0 +1,56 @@
+<div class="main">
+    <div class="container">
+      <div class="row">
+        <div class="span12">
+            <div class="widget stacked">
+                <div class="widget-header">
+                    <i class="icon-check"></i>
+                    <h3>账户编辑</h3>
+                </div> 
+                <div class="widget-content">
+                    <br />
+                    <form action="__URL__/save" method="post" class="form-horizontal" id="validation-form">
+                        <fieldset>
+                            <div class="control-group">
+                              <label class="control-label" for="userId">用户ID</label>
+                              <div class="controls">
+                                <input name="userId" type="text" class="input-large uneditable-input" id="userId" value="{$udata.userId}" readonly="readonly">
+                              </div>
+                            </div>
+                            <div class="control-group">
+                              <label class="control-label" for="userName">用户名</label>
+                              <div class="controls">
+                                <input name="userName" type="text" class="input-large" id="userName" value="{$udata.userName}">
+                              </div>
+                            </div>
+                            <div class="control-group">
+                              <label class="control-label" for="pwd">Email</label>
+                              <div class="controls">
+                                <input name="userEmail" type="text" class="input-large" id="userEmail" value="{$udata.userEmail}">
+                              </div>
+                            </div>
+                            <div class="control-group">
+                              <label class="control-label" for="pwd">密码</label>
+                              <div class="controls">
+                                <input type="text" class="input-large" name="pwd" id="pwd">
+                              </div>
+                            </div>
+                            <div class="control-group">
+                              <label class="control-label" for="repwd">重复密码</label>
+                              <div class="controls">
+                                <input type="text" class="input-large" name="repwd" id="repwd">
+                              </div>
+                            </div>
+                            
+                            <div class="form-actions">
+                              <button type="submit" class="btn btn-danger">更新</button>&nbsp;&nbsp;
+                              <a href="__URL__/query" class="btn">取消</a>
+                            </div>
+                          </fieldset>
+                        </form>
+                </div> 
+            </div>              
+        </div>        
+      </div>
+    </div> 
+</div>
