@@ -66,18 +66,12 @@
                             <div class="control-group">
                             <label class="control-label">关键词</label>
                             <div class="controls">
-                              <label class="checkbox">
-                                <input type="checkbox" name="keywords[]" value="keyword1">
-                                关键词1
+                              <volist name="keywords" id="keyword">
+                                <label class="checkbox">
+                                <input type="checkbox" name="keywords[]" value="{$keyword.keyword}">
+                                {$keyword.keyword}
                               </label>
-                              <label class="checkbox">
-                                <input type="checkbox" name="keywords[]" value="keyword2">
-                                关键词2
-                              </label>
-                              <label class="checkbox">
-                                <input type="checkbox" name="keywords[]" value="keyword3">
-                               关键词3
-                              </label>
+                              </volist>
                             </div>
                           </div>
                             <div class="form-actions">

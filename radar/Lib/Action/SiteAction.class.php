@@ -32,6 +32,9 @@ class SiteAction extends Action {
     }
 
     public function add(){
+        $kobj = M("keyword");
+        $keywords = $kobj->select();
+        $this->assign('keywords',$keywords);
         $this->display('./Tpl/site/addsite.html');
     }
 
