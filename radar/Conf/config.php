@@ -16,7 +16,6 @@ return array(
         'DEFAULT_ACTION'=>'show',
         'URL_ROUTER_ON'   => true, //开启路由
   		'URL_MODEL'=>1,
-		'SHOW_PAGE_TRACE'=>true,
 		//'DEFAULT_CHARSET'=> 'utf-8',
         'URL_ROUTE_RULES'=>array(
 //'index' => array('News/archive', 'status=1'),
