@@ -1,0 +1,76 @@
+ <div class="main">
+    <div class="container">
+      <div class="row">
+      	<div class="span12">
+			<div class="widget stacked widget-table action-table">
+					
+				<div class="widget-header">
+					<i class="icon-th-list"></i>
+					<h3>查询条件</h3>
+				</div>
+				<div class="widget-content">
+				
+						    <form class="pagination form-inline text-center">
+    <input type="text" placeholder="Email">
+    <button type="submit" class="btn glow  btn-primary">查询</button>
+    <button type="submit" class="btn glow  btn-primary">添加</button>
+    </form>
+					
+				</div>
+			</div>
+		</div>
+		<div class="span12">
+			<div class="widget stacked widget-table action-table">
+					
+				<div class="widget-header">
+					<i class="icon-th-list"></i>
+					<h3>查询结果</h3>
+				</div>
+				
+				<div class="widget-content">
+					<table class="table table-striped table-bordered  table-highlight">
+						<thead>
+							<tr>
+								<th>对象</th>
+								<th>事件</th>
+								<th width="15%">时间</th>
+                                                                <th  width="10%">IP</th>
+								<th class="td-actions">操作</th>
+							</tr>
+						</thead>
+						<tbody>
+                                                <volist name="kdata" id="v">
+							<tr>
+								<td>{$v.operator}</td>
+								<td>{$v.operateContent}</td>
+								<td>{$v.operateDate}</td>
+                                                                <td>{$v.ip}</td>
+								<td class="td-actions">
+                                                                <a href="javascript:;" class="btn btn-small">
+										<i class="btn-icon-only icon-remove"></i>										
+									</a>
+								</td>
+							</tr>
+                                                        </volist>
+							</tbody>
+						</table>
+						{$page}
+				</div>
+				<div class="widget-content text-right">
+				<div id="example" class="pagination10"></div>
+				</div>
+			</div>
+		</div>	
+    </div>
+</div>
+
+<script src="../Public/js/bootstrap-paginator.min.js"></script>
+<script type="text/javascript">
+var options = {
+            currentPage: 4,
+            totalPages: 10,
+	    	numberOfPages:5
+        }
+
+$('#example').bootstrapPaginator(options);
+</script>
