@@ -1,0 +1,138 @@
+<div class="main">
+    <div class="container">
+      <div class="row">
+		<div class="span12">
+		<div class="widget big-stats-container stacked">
+      			<div class="widget-content">
+		      		<div class="cf" id="big_stats">
+						<div class="stat">								
+							<h4>累计监控站点</h4>
+							<span id="number1" class="t_num"></span>
+						</div> 
+						<div class="stat">								
+							<h4>累计监控记录数</h4>
+							<span id="number2" class="t_num"></span>
+						</div> 
+						<div class="stat">								
+							<h4>累计发现可疑记录数</h4>
+							<span id="number3" class="t_num"></span>
+						</div> 
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="span12">
+			<div class="widget stacked">
+				<div class="widget-header">
+					<i class="icon-star"></i>
+					<h3>实时监控</h3>
+				</div>
+				<div class="widget-content" id="allmap" height="268">					
+					<!-- <img src="http://api.map.baidu.com/staticimage?center=%E5%A4%A9%E5%AE%89%E9%97%A8&width=900&height=268&zoom=16&markers=%E5%A4%A9%E5%AE%89%E9%97%A8&markerStyles=-1,http://api.map.baidu.com/images/marker_red.png,-1,23,25"/> -->
+				</div>
+			</div>
+		</div>
+		
+      	<div class="span4">	
+      		<div class="widget stacked">
+				<div class="widget-header">
+					<i class="icon-signal"></i>
+					<h3>可疑信息趋势</h3>
+				</div>
+				<div class="widget-content">					
+					<img src="../Public/imgs/charts.png"/>
+				</div>
+			</div>
+	    </div>
+
+	    <div class="span4">	
+      		<div class="widget stacked">
+				<div class="widget-header">
+					<i class="icon-signal"></i>
+					<h3>可疑信息趋势</h3>
+				</div>
+				<div class="widget-content">					
+					<img src="../Public/imgs/charts.png"/>
+				</div>
+			</div>
+	    </div>
+
+	    <div class="span4">	
+      		<div class="widget stacked">
+				<div class="widget-header">
+					<i class="icon-signal"></i>
+					<h3>可疑信息趋势</h3>
+				</div>
+				<div class="widget-content">					
+					<img src="../Public/imgs/charts.png"/>
+				</div>
+			</div>
+	    </div>
+      	
+      </div>
+    </div>
+</div>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=1.4"></script>
+<script type="text/javascript">
+$(function(){
+	getdata();
+	setInterval('getdata()', 3000);
+	show_num('number1',89);
+	show_num('number3',40);
+});
+
+function getdata(){
+	var timestamp = Date.parse(new Date()); 
+	show_num('number2',timestamp);
+}
+
+function show_num(id,n){
+	var it = $("#"+id+" i");
+	var len = String(n).length;
+	for(var i=0;i<len;i++){
+		if(it.length<=i){
+			$("#"+id).append("<i></i>");
+		}
+		var num=String(n).charAt(i);
+		var y = -parseInt(num)*30;
+		var obj = $("#"+id+" i").eq(i);
+		obj.animate({
+			backgroundPosition :'(0 '+String(y)+'px)' 
+			}, 'slow','swing',function(){
+			}
+		);
+	}
+}
+
+var map = new BMap.Map("allmap");
+map.centerAndZoom(new BMap.Point(125.35,43.88), 5);
+
+var bdary = new BMap.Boundary();
+bdary.get("长春", function(rs){       //获取行政区域
+        map.clearOverlays();        //清除地图覆盖物       
+        var count = rs.boundaries.length; //行政区域的点有多少个
+			for(var i = 0; i < count; i++){
+            var ply = new BMap.Polygon(rs.boundaries[i], {strokeWeight: 2, strokeColor: "#ff0000",fillColor:"#ffff00"}); 
+            //建立多边形覆盖物
+            map.addOverlay(ply);  //添加覆盖物
+			pt = new BMap.Point(125.35,43.88);
+			var m = new BMap.Marker(pt);
+			var s = new BMap.Size(78,77);
+			var icon = new BMap.Icon("../Public/imgs/m2.png",s );
+			m.setIcon(icon);
+			var label = new BMap.Label("1");
+			label.setStyle({ color : "black", fontSize : "12px",border:"none","background":"transparent","font-weight":"bold","margin":"18px 21px"});
+			m.setLabel(label);
+			var sContent ='<div class="map_hot"><h1>新闻标题</h1><ul>';
+         	sContent +='<li><a href="'+this.url+'">新闻摘要</a></li>';
+         	sContent +='</ul><div class="jiao"><img src="../imgs/jiao.png" width="111" height="29" /></div>';
+         	var infoWindow = new BMap.InfoWindow(sContent);  // 创建信息窗口对象
+         	m.addEventListener("click", function(){          
+            	this.openInfoWindow(infoWindow);
+		 	});
+			map.addOverlay(m); 
+            map.setViewport(ply.getPath());    //调整视野         
+        }                
+    });
+</script>
