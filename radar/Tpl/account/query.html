@@ -47,11 +47,9 @@
 								<td>{$v.createDate|date="Y-m-d",strtotime(###)}</td>
 								<td class="td-actions">
 									<a href="__URL__/edit?userid={$v.userId}" class="btn btn-small btn-warning">
-										<i class="btn-icon-only icon-ok"></i>										
-									</a>
-									
-									<a href="__URL__/delete?userid={$v.userId}" class="btn btn-small btn-danger" onclick="return confirm('确定删除吗？');">
-										<i class="btn-icon-only icon-remove"></i>										
+										<i class="btn-icon-only  icon-pencil"></i>										
+									</a><a href="__URL__/delete?userid={$v.userId}" class="btn btn-small btn-danger" onclick="return confirm('确定删除吗？');">
+										<i class="btn-icon-only icon-trash"></i>										
 									</a>
 								</td>
 							</tr>
