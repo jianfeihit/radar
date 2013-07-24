@@ -12,6 +12,6 @@ class IndexAction extends Action {
         }
         $this->assign('kp',$result);
         // $this->display("./Tpl/Test/test.html");
-        $this->display('./Tpl/index.html');
+        $this->display('./Tpl/index1.html');
     }
 }

@@ -60,4 +60,13 @@ function highlight($str,$key_arr){
     return $str2;
 }
 
+function write_log($action){
+	$ary=array();
+	$loginuser = session("loginuser");
+	$ary["operator"] = $loginuser["userId"];
+	$ary["ip"] = get_client_ip();
+	$ary["operateContent"] = $action;
+	$ary["operateDate"] = date("Y-m-d H:i:s");
+	M("OperateLog")->add($ary);
+}
 ?>

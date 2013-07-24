@@ -72,9 +72,14 @@ class KeywordAction extends Action {
 	public function delete(){
 		$id = I("get.id",0);
 		if(M("keyword")->where("id='$id'")->delete()){
-			$this->redirect("Keyword/query","",0,"页面跳转中......");
+		//	$this->redirect("Keyword/query","",0,"页面跳转中......");
 		}else{
 			$this->error('删除失败！');
 		}
+	}
+	public function _after_delete($data,$opt){
+		print_r($data);
+		$loginuser = session("loginuser");
+		write_log($loginuser["userName"],"删除关键字");
 	}
 }

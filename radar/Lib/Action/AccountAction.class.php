@@ -37,7 +37,8 @@ class AccountAction extends Action {
 	}
 	public function delete(){
 		$userid = I("get.userid");
-		if(M("user")->where("userid='$userid'")->delete()){
+		if(M("User")->where("userid='$userid'")->delete()){
+			write_log("删除账户".$userid);
 			$this->redirect("Account/query","",0,"页面跳转中......");
 		}else{
 			$this->error('删除失败！');
@@ -50,6 +51,7 @@ class AccountAction extends Action {
 		}else{
 			$user->createDate=date("Y-m-d H:i:s");
 			$user->add();
+			write_log("新增账户".I("post.userId"));
 			$this->redirect("Account/query","",0,"页面跳转中......");
 		}
 	}
@@ -67,6 +69,7 @@ class AccountAction extends Action {
 			}
 		}
 		if($user->where("userId='$userId'")->save($ary)){
+			write_log("更新账户".I("post.userId"));
 			$this->redirect("Account/query","",0,"");
 		}else{
 			$this->error($user->getError());
