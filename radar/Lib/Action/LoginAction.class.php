@@ -14,12 +14,14 @@ class LoginAction extends Action {
 		$ck = M("User")->where("userId='$userId' and pwd ='".md5($pwd)."'")->find();
 		if($ck){
 			session("loginuser",$ck);
+			write_log("系统登录");
 			$this->redirect("Index/index","",0,"");
 		}else{
 			$this->error("用户ID或密码错误！");
 		}
 	}
 	public function  loginout(){
+		write_log("注销登录");
 		session(null);
 		$this->redirect("Login/show","",0,"");
 	}
