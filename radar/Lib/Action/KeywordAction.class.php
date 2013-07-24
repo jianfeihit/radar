@@ -45,6 +45,7 @@ class KeywordAction extends Action {
 		$id = trim(I("post.id"));
 		$ary["keyword"] = trim(I("post.keyword"));
 		if($keyword->where("id='$id'")->save($ary)){
+			write_log("更新关键字：".$ary["keyword"]);
 			$this->redirect("Keyword/query","",0,"");
 		}else{
 			$this->error($keyword->getError());
@@ -63,7 +64,7 @@ class KeywordAction extends Action {
 	'addDate'=>date("Y-m-d H:i:s")
 		);
 		if($kdata->add($ary)){
-			//$this->success('新增成功', '__URL__/query');
+			write_log("新增关键字：".$ary["keyword"]);
 			$this->redirect("Keyword/query","",0,"页面跳转中......");
 		}else{
 			$this->error('新增失败');
@@ -71,15 +72,12 @@ class KeywordAction extends Action {
 	}
 	public function delete(){
 		$id = I("get.id",0);
+		$keywords = M("Keyword")->where("id='$id'")->getField("keyword");
 		if(M("keyword")->where("id='$id'")->delete()){
-		//	$this->redirect("Keyword/query","",0,"页面跳转中......");
+			write_log("删除关键字：".$keywords);
+			$this->redirect("Keyword/query","",0,"页面跳转中......");
 		}else{
 			$this->error('删除失败！');
 		}
-	}
-	public function _after_delete($data,$opt){
-		print_r($data);
-		$loginuser = session("loginuser");
-		write_log($loginuser["userName"],"删除关键字");
 	}
 }
