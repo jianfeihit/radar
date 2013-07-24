@@ -3,8 +3,8 @@
 [Custom Stylesheet]
 
 
-Last change:	03/25/2013
-Assigned to:	You
+Last change:    03/25/2013
+Assigned to:    You
 
 -------------------------------------------------------------------*/
 
@@ -13,10 +13,22 @@ Assigned to:	You
 }
 
 .admin{
-	font-size:15px !important;
-	color: #FF9900 !important;
+    font-size:15px !important;
+    color: #FF9900 !important;
 }
 
 .dropdown-menu{
     min-width:100px;
 }
+
+.t_num i{
+    width:15px;
+    height:23px; 
+    display:inline-block;  
+    color:#ff0000;
+    background: url("../imgs/number.png") no-repeat scroll 0 0 transparent;
+    background-position:0 0; 
+    text-indent:-999em
+}
+
+#allmap {height: 300px;}

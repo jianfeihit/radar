@@ -24,7 +24,7 @@
 #big_stats .stat
 {
 	width: 25%;
-	height: 90px;
+	height: 60px;
 	text-align: center;
 	display: table-cell;
 	padding: 0;
@@ -46,7 +46,7 @@
 {
 	font-size: 14px;
 	font-weight: bold;
-	color: #777;
+	color: #FF9900;
 	margin-bottom: 1.5em;
 }
 

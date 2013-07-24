@@ -107,7 +107,8 @@ h6 {
 .navbar .navbar-inner,
 .navbar .navbar-inverse .navbar-inner {
   padding: 7px 0;
-  background: #292929;
+  /*background: #292929;*/
+  background-image: url("../imgs/tweed.png");
   filter: none;
   border-bottom: 1px solid #121212;
   -moz-border-radius: 0;
