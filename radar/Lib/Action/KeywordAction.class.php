@@ -39,15 +39,27 @@ class KeywordAction extends Action {
 		$this->kdata = M("keyword")->where("id='$id'")->find();
 		$this->display();
 	}
+
+	public function update(){
+		$keyword = M("Keyword");
+		$id = trim(I("post.id"));
+		$ary["keyword"] = trim(I("post.keyword"));
+		if($keyword->where("id='$id'")->save($ary)){
+			$this->redirect("Keyword/query","",0,"");
+		}else{
+			$this->error($keyword->getError());
+		}
+	}
 	public function save(){
 		$kdata = M("keyword");
 		$keyword = trim(I("keyword"));
 		if(empty($keyword)){
 			$this->error("关键字不能为空！");
 		}
+		$loginuser =session("loginuser");
 		$ary=array(
 	'keyword'=>I("keyword"),
-	'operator'=>'admin',//session("user")
+	'operator'=>$loginuser["userName"],
 	'addDate'=>date("Y-m-d H:i:s")
 		);
 		if($kdata->add($ary)){
@@ -55,6 +67,14 @@ class KeywordAction extends Action {
 			$this->redirect("Keyword/query","",0,"页面跳转中......");
 		}else{
 			$this->error('新增失败');
+		}
+	}
+	public function delete(){
+		$id = I("get.id",0);
+		if(M("keyword")->where("id='$id'")->delete()){
+			$this->redirect("Keyword/query","",0,"页面跳转中......");
+		}else{
+			$this->error('删除失败！');
 		}
 	}
 }
