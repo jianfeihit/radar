@@ -97,8 +97,22 @@ class SiteAction extends Action {
             'lastupdatetime'=>date("Y-m-d H:i:s"),
         );
 
-        if($kdata->add($ary)){
-            $this->success('新增成功', '__URL__/query');
+        // 添加link表
+
+        if($siteId=$kdata->add($ary)){
+            $linkdata = M("link");
+            $link=array(
+             'siteId'=>$siteId,
+             'linkMD5'=>md5($feedUrl),
+             'link'=>$feedUrl,
+             'state'=>'0',
+            );
+            if($linkdata->add($link)){
+                $this->success('新增成功', '__URL__/query');
+            }else{
+                $this->error('新增失败');
+            }
+            
         }else{
             $this->error('新增失败');
         }
