@@ -53,19 +53,27 @@ class AccountAction extends Action {
 			$this->redirect("Account/query","",0,"页面跳转中......");
 		}
 	}
-	
+
 	public function update(){
 		$user = M("User");
+		$userId = trim(I("post.userId"));
 		$ary["userName"] = trim(I("post.userName"));
 		$ary["userEmail"] = trim(I("post.userEmail"));
-		$ary["pwd"] = md5(trim(I("post.pwd")));
-		$repwd = md5(trim(I("post.repwd")));
-		if($repwd!=$ary["pwd"]){
-			$this->error("两次输入密码不一致");
+		if(""!=trim(I("post.pwd"))){
+			$ary["pwd"] = md5(trim(I("post.pwd")));
+			$repwd = md5(trim(I("post.repwd")));
+			if($repwd!=$ary["pwd"]){
+				$this->error("两次输入密码不一致");
+			}
 		}
-		
+		if($user->where("userId='$userId'")->save($ary)){
+			$this->redirect("Account/query","",0,"");
+		}else{
+			$this->error($user->getError());
+		}
+
 	}
-	
+
 	public function is_login(){
 		if (!session("?loginuser")){
 			$this->redirect("Login/show","",0,"");
