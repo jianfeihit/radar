@@ -78,13 +78,23 @@
 $(function(){
 	getdata();
 	setInterval('getdata()', 3000);
-	show_num('number1',89);
-	show_num('number3',40);
 });
 
 function getdata(){
-	var timestamp = Date.parse(new Date()); 
-	show_num('number2',timestamp);
+	// var timestamp = Date.parse(new Date());
+	$.ajax({
+	    url: '__URL__/getCheckData',
+		type: 'GET',
+		dataType: "json",
+		cache: false,
+		timeout: 10000,
+		error: function(){},
+		success: function(data){
+			show_num('number1',data.data.siteCount);
+			show_num('number2',data.data.checktimes);
+			show_num('number3',data.data.keywordPageCount);
+	    }
+   	}); 
 }
 
 function show_num(id,n){
