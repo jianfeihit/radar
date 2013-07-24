@@ -14,4 +14,22 @@ class IndexAction extends Action {
         // $this->display("./Tpl/Test/test.html");
         $this->display('./Tpl/index1.html');
     }
+
+    public function getCheckData(){
+        $siteDAO = M("site");
+        $siteCount = $siteDAO->count();
+
+        $linkDAO = M("link");
+        $checktimes = $linkDAO->sum("checktimes");
+
+        $keywordPageDAO = M("keyword_page");
+        $keywordPageCount = $keywordPageDAO->count();
+        
+        $ary=array(
+            'siteCount'=>$siteCount,
+            'keywordPageCount'=>$keywordPageCount,
+            'checktimes'=>$checktimes,
+        );
+        $this->ajaxReturn($ary,'success',1);
+    }
 }
