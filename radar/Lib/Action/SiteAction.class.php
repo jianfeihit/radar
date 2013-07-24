@@ -7,17 +7,16 @@ class SiteAction extends Action {
         import('ORG.Util.Page');
         $kobj = M("site");
         if(empty($siteName)){
-            $count= $kobj->count();
+            $count= $kobj->where("state != 2")->count();
             $Page = new Page($count,5);
             $show = $Page->show();
-            $this->kdata = $kobj->order('id desc')->limit($Page->firstRow.','.$Page->listRows)->select();
+            $this->kdata = $kobj->where("state != 2")->order('id desc')->limit($Page->firstRow.','.$Page->listRows)->select();
         }else{
-            $qmap['siteName'] = array("like","%$siteName%");
-            $count= $kobj->where($qmap)->count();
+            $count= $kobj->where("state != 2 and siteName like '%".$siteName."'")->count();
             $Page = new Page($count,5);
             $Page->parameter   .=   "siteName=".urlencode($siteName).'&';
             $show = $Page->show();
-            $this->kdata = $kobj->where($qmap)->order('id desc')->limit($Page->firstRow.','.$Page->listRows)->select();
+            $this->kdata = $kobj->where("state != 2 and siteName like '%".$siteName."%'")->order('id desc')->limit($Page->firstRow.','.$Page->listRows)->select();
         }
         $this->assign('page',$show);// 赋值分页输出
         $this->display('./Tpl/site/querysite.html');
@@ -28,6 +27,11 @@ class SiteAction extends Action {
         $id = trim(I("id"));
         $site = $kdata->where("id=".$id)->find();
         $this->assign('s',$site);
+        
+        $kobj = M("keyword");
+        $keywords = $kobj->select();
+        $this->assign('keywords',$keywords);
+        
         $this->display('./Tpl/site/addsite.html');
     }
 
@@ -36,6 +40,23 @@ class SiteAction extends Action {
         $keywords = $kobj->select();
         $this->assign('keywords',$keywords);
         $this->display('./Tpl/site/addsite.html');
+    }
+
+    public function updatestate(){
+        $kdata = M("site");
+        $id = trim($_GET["_URL_"][2]);
+        $state = trim($_GET["_URL_"][3]);
+
+        echo $id.$state;
+        $condition['id'] = $id;
+        $data['state'] = $state;
+        $result = $kdata->where($condition)->save($data);
+
+        if($result){
+                $this->success('修改成功', '__URL__/query');
+            }else{
+                $this->error('修改失败');
+        }
     }
 
     public function save(){
@@ -97,25 +118,24 @@ class SiteAction extends Action {
             'lastupdatetime'=>date("Y-m-d H:i:s"),
         );
 
-        // 添加link表
+        $id = trim(I("id"));
 
-        if($siteId=$kdata->add($ary)){
-            $linkdata = M("link");
-            $link=array(
-             'siteId'=>$siteId,
+        $link=array(
              'linkMD5'=>md5($feedUrl),
              'link'=>$feedUrl,
              'state'=>'0',
-            );
-            if($linkdata->add($link)){
-                $this->success('新增成功', '__URL__/query');
-            }else{
-                $this->error('新增失败');
-            }
-            
+        );
+
+        if(!empty($id)){
+            $ary['id'] = $id;
+            $link['siteId']=$id;
+            $kdata->save($ary);
         }else{
-            $this->error('新增失败');
+            $siteId=$kdata->add($ary);
+            $link['siteId']=$siteId;
         }
-        
+
+        M("link")->add($link);
+        $this->success('新增成功', '__URL__/query');
     }
 }
