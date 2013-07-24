@@ -36,7 +36,7 @@
 								<th width="7%">监控频率</th>
 								<th width="7%">监控模式</th>
 								<th width="5%">状态</th>
-								<th width="20%">绑定关键词</th>
+								<th width="15%">绑定关键词</th>
 								<th width="7%">检测网页</th>
 								<th width="7%">可疑网页</th>
 								<th width="10%">修改时间</th>
@@ -49,16 +49,16 @@
 								<td>{$v.siteName}</td>
 								<td><a href="{$v.feedUrl}" target="_blank">{$v.feedUrl}</a></td>
 								<td>
-								<if condition="v.monitorExp == 1">
+								<if condition="$v.monitorExp == 1">
 									每小时
 								<else />
 									每天
 								</if>
 								</td>
 								<td>
-								<if condition="v.runMode eq '0'">
+								<if condition="$v.runMode == 0">
 									主动模式
-								<else if condition="v.runMode eq '1'"/>
+								<else if condition="$v.runMode == 1"/>
 									被动模式
 								<else />
 									两种都有
@@ -73,8 +73,17 @@
 									<a href="__URL__/edit?id={$v.id}" class="btn btn-small btn-warning">
 										<i class="btn-icon-only icon-pencil"></i>
 									</a>
-									
-									<a href="javascript:;" class="btn btn-small">
+									<if condition="$v.state eq 1">
+									<a href="__URL__/updatestate/{$v.id}/0" class="btn btn-small btn-warning">
+										<i class="btn-icon-only icon-play"></i>
+									</a>
+									</if>
+									<if condition="$v.state eq 0">
+									<a href="__URL__/updatestate/{$v.id}/1" class="btn btn-small btn-warning">
+										<i class="btn-icon-only icon-pause"></i>
+									</a>
+									</if>
+									<a href="__URL__/updatestate/{$v.id}/2" class="btn btn-small btn-warning">
 										<i class="btn-icon-only icon-remove"></i>
 									</a>
 								</td>
