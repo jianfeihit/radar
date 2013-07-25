@@ -63,10 +63,10 @@
 											<td>{$v.digist}</td>
 										</if>
 										<td>{$v.checkDate}</td>
-										<td>已处理</td>
+										<td><if condition="$v.isHandle eq 1"><i class="btn btn-success btn-mini" id="label{$v.id}">已处理</i><else /><i class="btn btn-warning btn-mini" id="label{$v.id}">未处理</i></if></td>
 										<td>已生成</td>
 										<td class="td-actions">
-											<a href="javascript:sendmail()" class="btn btn-small btn-warning"> <i class="btn-icon-only icon-envelope" title="发送通知"></i>
+											<a href="javascript:;" class="btn btn-small btn-warning warn_sendmailbtn" warndata={$v.id}> <i class="btn-icon-only icon-envelope" title="发送通知"></i>
 											</a>
 											<a href="__URL__/view?id={$v.id}" class="btn btn-small btn-warning">
 												<i class="btn-icon-only icon-zoom-in" title="查看详情"></i>
@@ -98,6 +98,29 @@
 	</div>
 	<script src="../Public/js/bootstrap-paginator.min.js"></script>
 	<script type="text/javascript">
+	$(document).ready(function(e) {
+                $(".warn_sendmailbtn").click(function(e) {
+			var warndata = $(this).attr("warndata");
+			$.ajax({url:"__URL__/mailnotify",type:"POST",data:{id:warndata},dataType:"json",success: function(resp){
+				if(resp.success){
+                                	$("#label"+warndata).addClass('btn-success');
+                                        $("#label"+warndata).removeClass('btn-warning');
+					 $("#label"+warndata).html("已处理");
+					$.globalMessenger().post({
+					message: '发送成功.',
+					type: 'info',
+					showCloseButton: true
+					});
+				}else{
+					$.globalMessenger().post({
+					message: resp.msg,
+					type: 'info',
+					showCloseButton: true
+					});
+				}
+			}});
+                });
+        });
 	var options = {
             currentPage: 4,
             totalPages: 10,
@@ -107,12 +130,5 @@
 	$('#example').bootstrapPaginator(options);
 	$._messengerDefaults = {
 	extraClasses: 'messenger-fixed messenger-theme-future messenger-on-bottom messenger-on-right'
-	}
-	function sendmail(){
-		$.globalMessenger().post({
-  		message: '发送成功.',
-  		type: 'info',
-  		showCloseButton: true
-	});
 	}
 </script>

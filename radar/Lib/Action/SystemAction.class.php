@@ -6,6 +6,7 @@ class SystemAction extends Action {
 	}
 
 	public function auditlog(){
+		C("TEST",1);
 		import('ORG.Util.Page');
 		header("Content-type:text/html;charset=utf-8");
 		$key= trim(I("get.keyword"));

@@ -16,7 +16,7 @@ return array(
         'DEFAULT_ACTION'=>'show',
         'URL_ROUTER_ON'   => true, //开启路由
   		'URL_MODEL'=>1,
-		//'DEFAULT_CHARSET'=> 'utf-8',
+//'DEFAULT_CHARSET'=> 'utf-8',
         'URL_ROUTE_RULES'=>array(
 //'index' => array('News/archive', 'status=1'),
 //'index'=> 'Index/index',
@@ -25,6 +25,16 @@ return array(
 'TOKEN_ON'=>true,  // 是否开启令牌验证
 'TOKEN_NAME'=>'__hash__',    // 令牌验证的表单隐藏字段名称
 'TOKEN_TYPE'=>'md5',  //令牌哈希验证规则 默认为MD5
-'TOKEN_RESET'=>true
+'TOKEN_RESET'=>true,
+ 'THINK_EMAIL' => array(
+    'SMTP_HOST'   => 'smtp.163.com', //SMTP服务器
+    'SMTP_PORT'   => '25', //SMTP服务器端口
+    'SMTP_USER'   => 'obss_web@163.com', //SMTP服务器用户名
+    'SMTP_PASS'   => 'obss123', //SMTP服务器密码
+    'FROM_EMAIL'  => 'obss_web@163.com', //发件人EMAIL
+    'FROM_NAME'   => 'OBSS', //发件人名称
+    'REPLY_EMAIL' => '', //回复EMAIL（留空则为发件人EMAIL）
+    'REPLY_NAME'  => '', //回复名称（留空则为发件人名称）
+),
 );
 ?>
