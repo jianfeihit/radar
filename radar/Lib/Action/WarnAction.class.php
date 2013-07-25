@@ -59,7 +59,7 @@ class WarnAction extends Action {
 			if($mailto!=""&&true===($result=think_send_mail($mailto,"","告警信息",$mailbody))){
 				$ary["success"] = true;
 				$ary["msg"] = $result;
-				 M("KeywordPage")->where("id=$id")->setField("isHandle",1);
+				M("KeywordPage")->where("id=$id")->setField("isHandle",1);
 				echo json_encode($ary);
 			}else{
 				echo json_encode(array("success"=>false,"msg"=>"发送失败".$result));

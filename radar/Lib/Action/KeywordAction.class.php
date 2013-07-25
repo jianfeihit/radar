@@ -31,6 +31,12 @@ class KeywordAction extends Action {
 		$this->display();
 	}
 
+	public function getkeynums(){
+		$id = I("get.id",0);
+		$keyword = M("Keyword")->where("id=".$id)->getField("keyword");
+		$qmap["keyword"] =array("like","%$keyword%");
+		echo M("KeywordPage")->where($qmap)->count();
+	}
 	public function add(){
 		$this->display();
 	}

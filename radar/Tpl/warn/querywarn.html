@@ -64,7 +64,7 @@
 										</if>
 										<td>{$v.checkDate}</td>
 										<td><if condition="$v.isHandle eq 1"><span class="label label-success label-mini" id="label{$v.id}">已处理</span><else /><span class="label label-warning label-mini" id="label{$v.id}">未处理</span></if></td>
-										<td>已生成</td>
+										<td><span class="label label-info"><if condition="$v.isReport eq 1">已生成<else />未生成 </if></span></td>
 										<td class="td-actions">
 											<a href="javascript:;" class="btn btn-small btn-warning warn_sendmailbtn" warndata={$v.id}> <i class="btn-icon-only icon-envelope" title="发送通知"></i>
 											</a>
@@ -82,14 +82,14 @@
 								</volist>
 							</tbody>
 						</table>
-						<!-- {$page} -->
 					</div>
+                                        
 					<div class="widget-content">
+                                       		<div class="pagination"><ul>{$page}</ul></div>
 						<div class="text-left span5">
 							<button type="submit" class="btn glow pagination btn-primary text-left">生成简报</button>
 						</div>
 						<div class="text-right span6">
-							<div id="example"></div>
 						</div>
 					</div>
 				</div>
@@ -126,14 +126,4 @@
 			}});
                 });
         });
-	var options = {
-            currentPage: 4,
-            totalPages: 10,
-	    	numberOfPages:5
-        }
-
-	$('#example').bootstrapPaginator(options);
-	$._messengerDefaults = {
-	extraClasses: 'messenger-fixed messenger-theme-future messenger-on-bottom messenger-on-right'
-	}
 </script>
