@@ -2,7 +2,7 @@
 class PdfAction extends Action {
 	public function generatePdf(){
 		$id = I("get.id");
-		$data = A("Warn")->getMailstr();
+		$strcontent = A("Warn")->getMailstr();
 		vendor('tcpdf.tcpdf');
 		$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 		$pdf->SetCreator(PDF_CREATOR);
@@ -25,7 +25,7 @@ class PdfAction extends Action {
 		}
 		$pdf->SetFont('stsongstdlight', '', 10);
 		$pdf->AddPage();
-		$pdf->writeHTML($data, true, false, true, false, '');
+		$pdf->writeHTML($strcontent, true, false, true, false, '');
 		$pdf->lastPage();
 		$pdf->Output('example_006.pdf', 'I');
 	}

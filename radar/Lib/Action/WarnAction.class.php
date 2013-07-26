@@ -70,18 +70,19 @@ class WarnAction extends Action {
 		}
 	}
 	public function getMailstr(){
-		$id = I("get.id",0);
-		$data = M("KeywordPage")->where("id=$id")->find();
-		if($data){
-			$mailto = M("Site")->where("id=".$data["siteId"])->getField("adminEmail");
-			$mailbody="<div>";
-			$mailbody.="<strong>网站名称：".$data["siteName"]."</strong><br>";
-			$mailbody.="<strong>关键词：".$data["keyword"]."</strong><br>";
-			$mailbody.="新闻标题：".$data["title"]."<br>";
-			$mailbody.="链接：".$data["link"]."<br>";
-			$mailbody.="摘要：".$data["digist"]."<br></div>";
-			return $mailbody;
+		$id = I("get.id");
+		$ary = explode(",",$id);
+		$datas = M("KeywordPage")->where("id in($id)")->select();
+		$mailbody="";
+		if($datas){
+			foreach($datas as $key=>$data){
+				$mailbody.="<strong>网站名称：".$data["siteName"]."</strong><br />";
+				$mailbody.="<strong>关键词：".$data["keyword"]."</strong><br />";
+				$mailbody.="新闻标题：".$data["title"]."<br />";
+				$mailbody.="链接：".$data["link"]."<br />";
+				$mailbody.="摘要：".$data["digist"]."<br /><hr />     <br /> <br /> <br /> <br />\r\n";
+			}
 		}
+		return $mailbody;
 	}
-
 }
