@@ -44,7 +44,7 @@
 								<td>{$v.keyword}</td>
 								<td>{$v.operator}</td>
 								<td>{$v.addDate|date="Y-m-d",strtotime(###)}</td>
-                                                                <th><span class="badge badge-warning infonums" dataindex="{$v.id}" id="index{$v.id}" style="cursor:pointer;" onclick="location.href='{:U('Warn/query')}';">Loading...</span></th>
+                                                                <th><span class="badge badge-warning infonums" dataindex="{$v.id}" id="index{$v.id}" style="cursor:pointer;" onclick="location.href='{$v.keyword|U='Warn/query','param='.###}';">Loading...</span></th>
 								<td class="td-actions">
 									<a href="javascript:;" class="btn btn-small btn-success btnrefresh" dataindex="{$v.id}">
 										<i class="btn-icon-only icon-refresh"></i>										

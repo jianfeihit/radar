@@ -66,7 +66,7 @@
 								</td>
 								<td>{$v.state}</td>
 								<td>{$v.keywords}</td>
-								<td>100</td>
+								<td><span class="badge badge-warning infonums" dataindex="{$v.id}" id="index{$v.id}" style="cursor:pointer;" onclick="location.href='{:U('Warn/query')}';">Loading...</span></td>
 								<td>10</td>
 								<td>{$v.lastupdatetime}</td>
 								<td class="td-actions">
@@ -99,3 +99,24 @@
 		</div>	
     </div>
 </div>
+<script type="text/javascript">
+$(document).ready(function(e) {
+        function refreshtask(id){
+		$("#index"+id).html("Loading……");
+		$.ajax({
+			type:"GET",
+			url: "__URL__/getpagenums",
+			data:"id="+id,
+			success:function(data){
+			$("#index"+id).html(data);
+			}
+			});
+	}
+	$(".infonums").each(function(){
+		refreshtask($(this).attr("dataindex"));
+	});
+//	$(".btnrefresh").click(function(e) {
+//                refreshtask($(this).attr("dataindex"));
+//        });
+});
+</script>
