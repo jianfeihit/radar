@@ -1,11 +1,7 @@
 <?php
-class KeywordAction extends Action {
+class ReportAction extends Action {
 
-    public function query(){
-       $this->display('./Tpl/keyword/querykeyword.html');
-    }
-
-    public function add(){
-       $this->display('./Tpl/keyword/addkeyword.html');
+    public function open(){
+       $this->display('./Tpl/report/report.html');
     }
 }
