@@ -1,63 +1,71 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta charset="utf-8">
-    <title>关键词</title>
-  </head>
-<body>
-<!-- 主区域 -->    
+<!-- 主区域 -->
 <div class="main">
-    <div class="container">
-      <div class="row">
-      	<div class="span12">
-			<div class="widget stacked widget-table action-table">
-					
-				<div class="widget-header">
-					<i class="icon-th-list"></i>
-					<h3>全网搜索</h3>
-				</div>
-				<div class="widget-content">
-				    <form class="form-search pagination text-center">
-   
-    <div>
-                                <input type="text" class="input-xxlarge">
-                                <button type="submit" class="btn glow  btn-primary">Search</button>
-                               </div>
-                                <div>
-                                    <label class="checkbox inline">
-    <input type="checkbox" id="inlineCheckbox1" value="option1"> 百度
-    </label>
-    <label class="checkbox inline">
-    <input type="checkbox" id="inlineCheckbox2" value="option2"> 谷歌
-    </label>
-    <label class="checkbox inline">
-    <input type="checkbox" id="inlineCheckbox3" value="option3"> 必应
-    </label>
-    <label class="checkbox inline">
-    <input type="checkbox" id="inlineCheckbox3" value="option3"> 搜狗
-    </label>
-    <label class="checkbox inline">
-    <input type="checkbox" id="inlineCheckbox3" value="option3"> 360搜索
-    </label>
-                                </div>
-    </form>
-						   
+	<div class="container">
+		<div class="row">
+			<div class="span12">
+				<div class="widget stacked widget-table action-table">
+
+					<div class="widget-header">
+						<i class="icon-th-list"></i>
+						<h3>全网搜索</h3>
+					</div>
+					<div class="widget-content">
+						<form class="form-search pagination text-center" method="post"
+							action="__URL__/searchInternet">
+							<div>
+								<input type="text" class="input-xxlarge" name="q" id="q"
+									value="{$q}" placeholder="请输入搜索词">
+								<button type="submit" class="btn glow  btn-primary">搜索</button>
+							</div>
+							<div>
+								<label class="checkbox inline"> <input type="checkbox"
+									id="inlineCheckbox1" name="sis[]" value="百度"> 百度
+								</label>
+								<!-- <label class="checkbox inline"> <input type="checkbox"
+										id="inlineCheckbox2" value="option2"> 谷歌
+									</label> -->
+								<label class="checkbox inline"> <input type="checkbox"
+									id="inlineCheckbox3" name="sis[]" value="必应"> 必应
+								</label> <label class="checkbox inline"> <input type="checkbox"
+									id="inlineCheckbox3" name="sis[]" value="搜狗"> 搜狗
+								</label> <label class="checkbox inline"> <input type="checkbox"
+									id="inlineCheckbox3" name="sis[]" value="360"> 360
+								</label>
+							</div>
+						</form>
+					</div>
 				</div>
 			</div>
+
+			<foreach name="hits" item="vo" key="k">
+			<div class="span12">
+				<div class="widget stacked widget-table action-table">
+					<div class="widget-header">
+						<i class="icon-th-list"></i>
+						<h3>搜索结果：{$k}</h3>
+					</div>
+					<div class="widget widget-nopad stacked">
+						<div class="widget-content">
+							<ul class="news-items">
+								<volist name="vo" id="p">
+								<li>
+									<div class="news-item-detail">
+										<a href="{$p.link}" target="_blank" class="news-item-title">{$p.title|highlightWord=$q}</a>
+										<p class="news-item-preview">{$p.content|highlightWord=$q}</p>
+									</div>
+								</li>
+								</volist>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			</foreach>
 		</div>
-    </div>
+	</div>
 </div>
-
-<script src="../Public/js/bootstrap-paginator.min.js"></script>
 <script type="text/javascript">
-var options = {
-            currentPage: 4,
-            totalPages: 10,
-	    	numberOfPages:5
-        }
-
-$('#example').bootstrapPaginator(options);
+$('{$sis}'.split("|")).each(function(){
+  $("input[value='"+this+"']").attr("checked",true);
+})
 </script>
-</body>
-</html>

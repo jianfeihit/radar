@@ -20,12 +20,13 @@
 							<form class="form-search pagination text-center"
 								action="__URL__/searchIntranet">
 								<input type="text" class="input-xxlarge" name="q" id="q" value="{$q}" placeholder="请输入搜索词">
-								<button type="submit" class="btn glow  btn-primary">Search</button>
+								<button type="submit" class="btn glow  btn-primary">搜索</button>
 							</form>
 						</div>
 					</div>
 				</div>
 
+				<notempty name="hits">
 				<div class="span12">
 					<div class="widget stacked widget-table action-table">
 						<div class="widget-header">
@@ -38,7 +39,7 @@
 									<volist name="hits" id="p">
 									<li>
 										<div class="news-item-detail">
-											<a href="javascript:;" class="news-item-title">{$p.title}</a>
+											<a href="javascript:;" class="news-item-title">{$p.title|highlightWord=$q}</a>
 											<p class="news-item-preview">{$p.abstraction}</p>
 											IP:{$p.siteIP} {$p.city} {$p.siteNsp} <a href="__URL__/viewSnap?id={$p.linkId}&q={$q}"
 												class="news-item-title">查看快照</a>
@@ -65,6 +66,7 @@
 						</div>
 					</div>
 				</div>
+				</notempty>
 			</div>
 		</div>
 	</div>
