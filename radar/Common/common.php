@@ -54,8 +54,16 @@ function highlight($str,$key_arr){
 	$param_temp = array();
 	preg_match_all('/'.join('|',$key_arr).'/i',$str,$matches);
 	foreach($matches[0] as $value){
-		$param_temp[$value] = "<font style='color:#fff;background:#FF9632'>".$value ."</font>";
+		$param_temp[$value] = "<font color='#ff0000'>".$value ."</font>";
 	}
+	$str2 = strtr($str,$param_temp);
+	return $str2;
+}
+
+function highlightWord($str,$word){
+	$param_temp = array();
+	preg_match_all('/'.join('|',$key_arr).'/i',$str,$matches);
+	$param_temp[$word] = "<font color='#ff0000'>".$word ."</font>";
 	$str2 = strtr($str,$param_temp);
 	return $str2;
 }
