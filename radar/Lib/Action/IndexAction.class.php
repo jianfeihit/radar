@@ -11,6 +11,16 @@ class IndexAction extends Action {
             $result[$value[keyword]]=$kp;
         }
         $this->assign('kp',$result);
+        Vendor ("flashchart.Includes.FusionCharts");
+        $chart_sitepage =renderChartHTML ( "../Public/Charts/MSLine.swf",
+		urlencode (U("Report/countsitepage")), "", "blockday", "350", 164, false );
+		$chart_daypage =renderChartHTML ( "../Public/Charts/MSArea.swf",
+		urlencode (U("Report/countdaypage")), "", "blockday", "350", 164, false );
+		$chart_keypage =renderChartHTML ( "../Public/Charts/MSArea.swf",
+		urlencode (U("Report/countkeypage")), "", "blockday", "350", 164, false );
+		$this->assign("chart_sitepage",$chart_sitepage);
+		$this->assign("chart_daypage",$chart_daypage);
+		$this->assign("chart_keypage",$chart_keypage);
         // $this->display("./Tpl/Test/test.html");
         $this->display('./Tpl/index1.html');
     }

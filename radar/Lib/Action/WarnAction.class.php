@@ -80,7 +80,7 @@ class WarnAction extends Action {
 				$mailbody.="<strong>关键词：".$data["keyword"]."</strong><br />";
 				$mailbody.="新闻标题：".$data["title"]."<br />";
 				$mailbody.="链接：".$data["link"]."<br />";
-				$mailbody.="摘要：".$data["digist"]."<br /><hr />     <br /> <br /> <br /> <br />\r\n";
+				$mailbody.="摘要：".$data["digist"]."&nbsp;<br /><hr />&nbsp;<br />";
 			}
 		}
 		return $mailbody;
