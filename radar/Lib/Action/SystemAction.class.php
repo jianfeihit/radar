@@ -2,7 +2,18 @@
 class SystemAction extends Action {
 
 	public function failsite(){
-		$this->display();
+		$data = M();
+		$ret = $data->query("select s.siteName,t.c,t.siteId from t_site s,(select count(1) c,siteId from t_link GROUP BY siteId having count(1)<5) t where s.id=t.siteId");
+		$this->assign('failrecords',$ret);
+		$this->display("");
+	}
+	
+	public function viewDetail(){
+		$id = I("get.siteId");
+		$data = M();
+		$ret = $data->query("select link from t_link where siteId=".$id);
+		$this->assign('links',$ret);
+		$this->display("./Tpl/system/viewfailsite.html");
 	}
 
 	public function auditlog(){
