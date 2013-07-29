@@ -1,41 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta charset="utf-8">
-    <title>关键词</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>关键词</title>
 </head>
 <body>
-    <!-- 主区域 -->
-    <div class="main">
-        <div class="container">
-            <div class="row">
-                <div class="span12">
-                    <div class="widget stacked widget-table action-table">
+	<!-- 主区域 -->
+	<div class="main">
+		<div class="container">
+			<div class="row">
+				<div class="span12">
+					<div class="widget stacked widget-table action-table">
+						<div class="widget-header">
+							<i class="icon-th-list"></i>
+							<h3>站内搜索</h3>
+						</div>
+						<div class="widget-content">
+							<form class="form-search pagination text-center"
+								action="__URL__/searchIntranet">
+								<input type="text" class="input-xxlarge" name="q" id="q" value="{$q}" placeholder="请输入搜索词">
+								<button type="submit" class="btn glow  btn-primary">Search</button>
+							</form>
+						</div>
+					</div>
+				</div>
 
-                        <div class="widget-header"> <i class="icon-th-list"></i>
-                            <h3>站内搜索</h3>
-                        </div>
-                        <div class="widget-content">
-                            <form class="form-search pagination text-center">
-                                 <input type="text" class="input-xxlarge">
-    <button type="submit" class="btn glow  btn-primary">Search</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <script src="../Public/js/bootstrap-paginator.min.js"></script>
-        <script type="text/javascript">
-var options = {
-            currentPage: 4,
-            totalPages: 10,
-            numberOfPages:5
-        }
-
-$('#example').bootstrapPaginator(options);
-</script>
+				<div class="span12">
+					<div class="widget stacked widget-table action-table">
+						<div class="widget-header">
+							<i class="icon-th-list"></i>
+							<h3>搜索结果</h3>
+						</div>
+						<div class="widget widget-nopad stacked">
+							<div class="widget-content">
+								<ul class="news-items">
+									<volist name="hits" id="p">
+									<li>
+										<div class="news-item-detail">
+											<a href="javascript:;" class="news-item-title">{$p.title}</a>
+											<p class="news-item-preview">{$p.abstraction}</p>
+											IP:{$p.siteIP} {$p.city} {$p.siteNsp} <a href="__URL__/viewSnap?id={$p.linkId}&q={$q}"
+												class="news-item-title">查看快照</a>
+										</div>
+									</li>
+									</volist>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="widget-content text-center">
+						<div class="pagination" id="example">
+							<ul>
+								<li><a title="Go to first page">&lt;&lt;</a></li>
+								<li><a title="Go to previous page">&lt;</a></li>
+								<li><a title="Go to page 1">1</a></li>
+								<li><a title="Go to page 2">2</a></li>
+								<li><a title="Go to page 3">3</a></li>
+								<li class="active"><a title="Current page is 4">4</a></li>
+								<li><a title="Go to page 5">5</a></li>
+								<li><a title="Go to next page">&gt;</a></li>
+								<li><a title="Go to last page">&gt;&gt;</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
-    </html>
+</html>
