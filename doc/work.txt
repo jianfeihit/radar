@@ -1,0 +1,6 @@
+2013-07-27 TO-DO List
+1\crawler:add reset link state timer(by day,by hour)
+2\crawler:update checktimes=checktimes+1 when update link state to 2
+3\searcher:add add-index timer
+4\radar:add 3 chart to index
+5\radar:add report menu,which have two sub-menu:site-report and warn-report
