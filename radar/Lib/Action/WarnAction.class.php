@@ -2,6 +2,7 @@
 class WarnAction extends Action {
 
 	public function query(){
+		C('TOKEN_ON',false);
 		$param = trim(I("get.param"));// 查询词，模糊查询
 		$st = trim(I("get.st")); // 查询类型，k表示按照关键词查询，s表示按照网站名称查询,默认按照关键词查询
 

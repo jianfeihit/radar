@@ -59,7 +59,7 @@
 										<td>{$v.keyword}</td>
 										<td>{$v.title}</td>
 										<if condition="strlen('$v.digist') lt 50">
-											<td>{$v.digist|msubstr=0,50,'utf-8',true}</td>
+											<td>{$v.digist|strip_tags|msubstr=0,50,'utf-8',true|highlightWord=###,$v['keyword']}</td>
 											<else />
 											<td>{$v.digist}</td>
 										</if>
