@@ -47,9 +47,7 @@
                 </div>
 
                 <div class="form-actions">
-                  <button type="submit" class="btn btn-danger btn">添加</button>
-                  &nbsp;&nbsp;
-                  <button type="reset" class="btn">取消</button>
+                  <button type="button" class="btn btn-danger btn warn_sendmailbtn" warndata={$kp.id}>Email通知管理员</button>
                 </div>
               </fieldset>
             </form>
@@ -71,3 +69,30 @@
     </div>
   </div>
 </div>
+<script type="text/javascript">
+	$(document).ready(function(e) {
+                $(".warn_sendmailbtn").click(function(e) {
+			$.globalMessenger().post({
+					message: '邮件发送中.',
+					type: 'info',
+					showCloseButton: false
+					});
+			var warndata = $(this).attr("warndata");
+			$.ajax({url:"__URL__/mailnotify",type:"POST",data:{id:warndata},dataType:"json",success: function(resp){
+				if(resp.success){
+					$.globalMessenger().post({
+					message: '发送成功.',
+					type: 'info',
+					showCloseButton: true
+					});
+				}else{
+					$.globalMessenger().post({
+					message: resp.msg,
+					type: 'info',
+					showCloseButton: true
+					});
+				}
+			}});
+                });
+        });
+</script>

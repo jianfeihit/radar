@@ -62,6 +62,7 @@ class WarnAction extends Action {
 				$ary["success"] = true;
 				$ary["msg"] = $result;
 				M("KeywordPage")->where("id=$id")->setField("isHandle",1);
+				M("KeywordPage")->where("id=$id")->setInc("sendMailTimes");
 				echo json_encode($ary);
 			}else{
 				echo json_encode(array("success"=>false,"msg"=>"发送失败".$result));
