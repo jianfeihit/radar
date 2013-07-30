@@ -22,6 +22,13 @@ function getISPAndCity($ip){
 	return json_decode($rsp);
 }
 
+// 获取经纬度
+function getPostion($ip){
+	$req = "http://api.map.baidu.com/location/ip?ak=F454f8a5efe5e577997931cc01de3974&coor=bd09ll&ip=".$ip;
+	$rsp = file_get_contents($req);
+	return json_decode($rsp,true);
+}
+
 // 字符串判断是否开头函数
 function startWith($str, $needle) {
 	return strpos($str, $needle) === 0;
