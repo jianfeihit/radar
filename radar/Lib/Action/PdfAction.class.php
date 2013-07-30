@@ -41,6 +41,16 @@ class PdfAction extends Action {
 EOF;
 		$pdf->writeHTML($html.$strcontent."</p>", true, false, true, false, '');
 		$pdf->lastPage();
+		$pdfTitle = 'report-'.date('YmdHis',time()).'.pdf';
+		$pdfFile = C('FILE_TEMP').'/'.$pdfTitle;
+		$pdf->Output($pdfFile, 'F');
+		$ary=array(
+			'title'=>$pdfTitle,
+			'path'=>$pdfFile,
+			'operator'=>$loginuser["userName"],
+			'createTime'=>date("Y-m-d H:i:s")
+		);
+		M("bulletins")->add($ary);
 		$pdf->Output('report.pdf', 'D');
 	}
 
