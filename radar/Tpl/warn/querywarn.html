@@ -12,19 +12,20 @@
 							<div class="input-prepend">
 								<div class="btn-group">
 									<button class="btn dropdown-toggle" data-toggle="dropdown">
-										查询类型
-										<span class="caret"></span>
+										<span id="searchtype"><if condition="$Think.get.st eq 's'">网站名称<else />关键词</if></span>
+									<span class="caret"></span>
 									</button>
 									<ul class="dropdown-menu">
 										<li>
-											<a href="#">关键词</a>
+											<a href="javascript:;">关键词</a>
 										</li>
 										<li>
-											<a href="#">网站名称</a>
+											<a href="javascript:;">网站名称</a>
 										</li>
 									</ul>
 								</div>
-								<input name="param" type="text" class="input-xlarge" id="param" value="{$param}" placeholder="请输入关键字"></div>
+                                                                <input name="st" type="hidden" id="st" value="{$Think.get.st}" />
+						  <input name="param" type="text" class="input-xlarge" id="param" value="{$param}" placeholder="请输入关键字"></div>
 							<button type="submit" class="btn glow  btn-primary">查询</button>
 						</form>
 
@@ -99,6 +100,15 @@
 	<script src="../Public/js/bootstrap-paginator.min.js"></script>
 	<script type="text/javascript">
 	$(document).ready(function(e) {
+		$(".dropdown-menu a").click(function(e) {
+                        if($(this).html()=="关键词"){
+				$("#st").val('k');
+				$("#searchtype").html($(this).html());
+			}else{
+				$("#st").val('s');
+				$("#searchtype").html($(this).html());
+			}
+                });
                 $(".warn_sendmailbtn").click(function(e) {
 			$.globalMessenger().post({
 					message: '邮件发送中.',

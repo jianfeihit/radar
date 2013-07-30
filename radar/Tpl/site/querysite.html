@@ -39,8 +39,8 @@
 								<th width="15%">绑定关键词</th>
 								<th width="7%">检测网页</th>
 								<th width="7%">可疑网页</th>
-								<th width="10%">修改时间</th>
-								<th width="7%" class="td-actions">操作</th>
+								<th width="13%">修改时间</th>
+								<th width="5%" class="td-actions">操作</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -58,16 +58,16 @@
 								<td>
 								<if condition="$v.runMode == 0">
 									主动模式
-								<else if condition="$v.runMode == 1"/>
+								<elseif condition="$v.runMode == 1"/>
 									被动模式
 								<else />
 									两种都有
 								</if>
 								</td>
-								<td>{$v.state}</td>
+								<td><if condition="$v.state == 0"><span class="badge badge-success">运行中</span><elseif condition="$v.state == 1"/><span class="badge badge-warning">暂停中</span><else /><span class="badge badge-info">已删除</span></if></td>
 								<td>{$v.keywords}</td>
 								<td><span class="badge badge-warning infonums" dataindex="{$v.id}" id="index{$v.id}" style="cursor:pointer;" onclick="location.href='{:U('Warn/query')}';">Loading...</span></td>
-								<td>10</td>
+								<td><i><span class="badge badge-info infonums_key" dataindex="{$v.id}" id="indexkey{$v.id}" style="cursor:pointer;">Loading...</span></i></td>
 								<td>{$v.lastupdatetime}</td>
 								<td class="td-actions">
 									<a href="__URL__/edit?id={$v.id}" class="btn btn-small btn-warning">
@@ -114,6 +114,20 @@ $(document).ready(function(e) {
 	}
 	$(".infonums").each(function(){
 		refreshtask($(this).attr("dataindex"));
+	});
+	function refreshtaskkey(id){
+		$("#indexkey"+id).html("Loading……");
+		$.ajax({
+			type:"GET",
+			url: "{:U('Report/getpagenums')}",
+			data:"id="+id,
+			success:function(data){
+			$("#indexkey"+id).html(data);
+			}
+			});
+	}
+	$(".infonums_key").each(function(){
+		refreshtaskkey($(this).attr("dataindex"));
 	});
 //	$(".btnrefresh").click(function(e) {
 //                refreshtask($(this).attr("dataindex"));

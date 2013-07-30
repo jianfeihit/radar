@@ -11,7 +11,7 @@ class SearchAction extends Action {
             $this->error("搜索词不能为空！");
         }
         $seacher = C("SEARCHER");
-        $resp = file_get_contents($seacher."/search/detailSearch?query=%E5%90%89%E6%9E%97");
+        $resp = file_get_contents($seacher."/search/detailSearch?query=".$query);
         $ret = json_decode($resp, true);
         $this->assign('hits',$ret["result"]);
         $this->assign('q',$query);

@@ -14,7 +14,7 @@ class WarnAction extends Action {
 			$Page = new Page($count,10);
 			$show = $Page->show();
 			$Page->parameter   .=   "param=".urlencode($param).'&';
-			$this->kdata = $kobj->order('checkDate desc')->limit($Page->firstRow.','.$Page->listRows)->select();
+			$this->kdata = $kobj->where($qmap)->order('checkDate desc')->limit($Page->firstRow.','.$Page->listRows)->select();
 		}else{// 按照关键词查询
 			$qmap['keyword'] = array("like","%$param%");
 			$count= $kobj->where($qmap)->count();
