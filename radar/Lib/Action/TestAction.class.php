@@ -34,10 +34,12 @@ class TestAction extends Action {
         // $this->assign('kp1',$result);
         $ret = file_get_contents("http://localhost:8080/searcher/search/detailSearch?query=%E5%90%89%E6%9E%97");
 //        print_r(json_decode($ret)->result);
-        foreach (json_decode($ret)->result as $key => $value) {
+       /* foreach (json_decode($ret)->result as $key => $value) {
         	print_r($value->title);
         	echo "<br/>";
-        }
+        }*/
+        $arr_url = getPostion('218.62.14.228');
+        print_r($arr_url);
         $this->display("./Tpl/Test/test.html");
     }
 }

@@ -21,7 +21,8 @@ class IndexAction extends Action {
 		$this->assign("chart_sitepage",$chart_sitepage);
 		$this->assign("chart_daypage",$chart_daypage);
 		$this->assign("chart_keypage",$chart_keypage);
-        // $this->display("./Tpl/Test/test.html");
+		$last10warn = $data->query("select p.id,title,digist,s.lat,s.lng from t_keyword_page p LEFT JOIN t_site s on p.siteId=s.id  ORDER BY checkDate desc limit 10");
+		$this->assign("last10warn",$last10warn);
         $this->display('./Tpl/index1.html');
     }
 

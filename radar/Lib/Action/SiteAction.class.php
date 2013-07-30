@@ -99,6 +99,10 @@ class SiteAction extends Action {
 		$netsp = $ispinfo->isp;
 		$province = $ispinfo->province;
 		$city = $ispinfo->city;
+		
+		$positons = getPostion($ip);
+        $lat = $positons["content"]["point"]["x"];
+        $lng = $positons["content"]["point"]["y"];
 
 		$ary=array(
             'siteName'=>$siteName,
@@ -115,6 +119,8 @@ class SiteAction extends Action {
             'city'=>$city,
             'mainHost'=>$mainHost,
             'state'=>"0",
+            'lat'=>$lat,
+            'lng'=>$lng,
             'lastupdatetime'=>date("Y-m-d H:i:s"),
 		);
 
