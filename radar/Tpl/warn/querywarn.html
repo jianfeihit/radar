@@ -12,7 +12,7 @@
 							<div class="input-prepend">
 								<div class="btn-group">
 									<button class="btn dropdown-toggle" data-toggle="dropdown">
-										<span id="searchtype"><if condition="$Think.get.st eq 's'">网站名称<else />关键词</if></span>
+										<span id="searchtype"><php>if(isset($_GET["st"])&&$_GET["st"]=="s"){echo "网站名称";}else{echo "关键词";}</php></span>
 									<span class="caret"></span>
 									</button>
 									<ul class="dropdown-menu">
@@ -24,7 +24,7 @@
 										</li>
 									</ul>
 								</div>
-                                                                <input name="st" type="hidden" id="st" value="{$Think.get.st}" />
+                                                                <input name="st" type="hidden" id="st" value="<php>if(isset($_GET["st"])){echo $_GET["st"];}</php>" />
 						  <input name="param" type="text" class="input-xlarge" id="param" value="{$param}" placeholder="请输入关键字"></div>
 							<button type="submit" class="btn glow  btn-primary">查询</button>
 						</form>
@@ -39,7 +39,7 @@
 							<thead>
 								<tr>
 									<th width="2%">
-										<input type="checkbox" name="keywords[]"></th>
+										<input type="checkbox" name="selectall" id="selectall"></th>
 									<th width="11%">网站名称</th>
 									<th width="8%">关键词</th>
 									<th width="15%">新闻标题</th>
@@ -54,12 +54,12 @@
 								<volist name="kdata" id="v">
 									<tr>
 										<td>
-											<input type="checkbox" name="keywords[]" value="{$keyword.keyword}"></td>
+											<input type="checkbox" name="warnids[]" value="{$v.id}"></td>
 										<td>{$v.siteName}</td>
 										<td>{$v.keyword}</td>
 										<td>{$v.title}</td>
 										<if condition="strlen('$v.digist') lt 50">
-											<td>{$v.digist|strip_tags|msubstr=0,50,'utf-8',true|highlightWord=###,$v['keyword']}</td>
+											<td>{$v.digist|strip_tags|msubstr=###,0,50,'utf-8',true|heightlighttext=$v['keyword'],###}</td>
 											<else />
 											<td>{$v.digist}</td>
 										</if>
@@ -87,7 +87,7 @@
                                         <div class="widget-content text-right"><div class="pagination"><ul>{$page}</ul></div></div>
 					<div class="widget-content">
 						<div class="text-left span5">
-							<button type="submit" class="btn glow pagination btn-primary text-left">生成简报</button>
+							<button type="button" class="btn glow pagination btn-primary text-left" id="genratereport">生成简报</button>
 						</div>
 						<div class="text-right span6">
 						</div>
@@ -100,6 +100,27 @@
 	<script src="../Public/js/bootstrap-paginator.min.js"></script>
 	<script type="text/javascript">
 	$(document).ready(function(e) {
+		$("#selectall").click(function(e) {
+                        $("input[name='warnids[]']").each(function(index, element) {
+                               if($(element).attr("checked")=="checked"){
+				    $(element).attr("checked",false);
+			       }else{
+				     $(element).attr("checked","checked");
+			       }
+                        });
+                });
+		$("#genratereport").click(function(e) {
+			var tempary=[];
+                         $("input[name='warnids[]']").each(function(index, element) {
+				 if($(element).attr("checked")=="checked"){
+				 	tempary.push($(element).val());
+				 }
+			 });
+			 var tempids = tempary.join(",");
+			 if(tempids!=""){
+			 	location.href='{:U("Pdf/generatePdf")}?id='+tempids;
+			 }
+                });
 		$(".dropdown-menu a").click(function(e) {
                         if($(this).html()=="关键词"){
 				$("#st").val('k');

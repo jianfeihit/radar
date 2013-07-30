@@ -25,9 +25,23 @@ class PdfAction extends Action {
 		}
 		$pdf->SetFont('stsongstdlight', '', 10);
 		$pdf->AddPage();
-		$pdf->writeHTML($strcontent, true, false, true, false, '');
+		$html = <<<EOF
+<style>
+    p.first {
+        color: #003300;
+        font-size: 12pt;
+    }
+    p.first span {
+        color: red;
+        font-style: italic;
+    }
+
+</style>
+<p class="first">
+EOF;
+		$pdf->writeHTML($html.$strcontent."</p>", true, false, true, false, '');
 		$pdf->lastPage();
-		$pdf->Output('example_006.pdf', 'I');
+		$pdf->Output('report.pdf', 'D');
 	}
 
 	public function viewPdf(){

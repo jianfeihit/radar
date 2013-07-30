@@ -75,6 +75,15 @@ function highlightWord($str,$word){
 	return $str2;
 }
 
+function heightlighttext($key, $orignkey, $color = "red") {
+	$tmp = explode ( "|", $key );
+	for($i = 0; $i < count ( $tmp ); $i ++) {
+		$str_rep = "<span style='color:#F00'>" . $tmp [$i] . "</span>";
+		$orignkey = preg_replace ( "/($tmp[$i])/i", "<span style='color:#F00'>\\1</span>", $orignkey );
+	}
+	return $orignkey;
+}
+
 function write_log($action){
 	$ary=array();
 	$loginuser = session("loginuser");

@@ -82,7 +82,7 @@ class SiteAction extends Action {
 		if(empty($monitorExp)){
 			$this->error("监控频率不能为空！");
 		}
-		if(empty($runMode)){
+		if($runMode==""){
 			$this->error("监控模式不能为空！");
 		}
 		if(empty($keywords)){

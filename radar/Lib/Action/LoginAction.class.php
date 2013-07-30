@@ -21,8 +21,10 @@ class LoginAction extends Action {
 		}
 	}
 	public function  loginout(){
-		write_log("注销登录");
-		session(null);
+		if(session("?loginuser")){
+			write_log("注销登录");
+			session(null);
+		}
 		$this->redirect("Login/show","",0,"");
 	}
 }
