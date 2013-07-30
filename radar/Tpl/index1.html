@@ -29,12 +29,11 @@
 					<h3>实时监控</h3>
 				</div>
 				<div class="widget-content" id="allmap" height="268">					
-					<!-- <img src="http://api.map.baidu.com/staticimage?center=%E5%A4%A9%E5%AE%89%E9%97%A8&width=900&height=268&zoom=16&markers=%E5%A4%A9%E5%AE%89%E9%97%A8&markerStyles=-1,http://api.map.baidu.com/images/marker_red.png,-1,23,25"/> -->
 				</div>
 			</div>
 		</div>
 		
-      	<div class="span4">	
+       <div class="span4">	
       		<div class="widget stacked">
 				<div class="widget-header">
 					<i class="icon-signal"></i>
@@ -69,11 +68,13 @@
 				</div>
 			</div>
 	    </div>
-      	
+      	 
       </div>
     </div>
 </div>
 <script type="text/javascript" src="http://api.map.baidu.com/api?v=1.4"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/library/TextIconOverlay/1.2/src/TextIconOverlay_min.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/library/MarkerClusterer/1.2/src/MarkerClusterer_min.js"></script>
 <script type="text/javascript">
 $(function(){
 	getdata();
@@ -116,33 +117,24 @@ function show_num(id,n){
 }
 
 var map = new BMap.Map("allmap");
-map.centerAndZoom(new BMap.Point(125.35,43.88), 5);
+map.centerAndZoom(new BMap.Point(125.35,43.88), 8)
+map.enableScrollWheelZoom();
 
-var bdary = new BMap.Boundary();
-bdary.get("长春", function(rs){       //获取行政区域
-        map.clearOverlays();        //清除地图覆盖物       
-        var count = rs.boundaries.length; //行政区域的点有多少个
-			for(var i = 0; i < count; i++){
-            var ply = new BMap.Polygon(rs.boundaries[i], {strokeWeight: 2, strokeColor: "#ff0000",fillColor:"#ffff00"}); 
-            //建立多边形覆盖物
-            map.addOverlay(ply);  //添加覆盖物
-			pt = new BMap.Point(125.35,43.88);
-			var m = new BMap.Marker(pt);
-			var s = new BMap.Size(78,77);
-			var icon = new BMap.Icon("../Public/imgs/m2.png",s );
-			m.setIcon(icon);
-			var label = new BMap.Label("1");
-			label.setStyle({ color : "black", fontSize : "12px",border:"none","background":"transparent","font-weight":"bold","margin":"18px 21px"});
-			m.setLabel(label);
-			var sContent ='<div class="map_hot"><h1>新闻标题</h1><ul>';
-         	sContent +='<li><a href="'+this.url+'">新闻摘要</a></li>';
-         	sContent +='</ul><div class="jiao"><img src="../imgs/jiao.png" width="111" height="29" /></div>';
-         	var infoWindow = new BMap.InfoWindow(sContent);  // 创建信息窗口对象
-         	m.addEventListener("click", function(){          
-            	this.openInfoWindow(infoWindow);
-		 	});
-			map.addOverlay(m); 
-            map.setViewport(ply.getPath());    //调整视野         
-        }                
-    });
+var MAX = 10;
+var markers = [];
+var pt = null;
+var i = 0;
+
+<volist name="last10warn" id="w">
+pt = new BMap.Point({$w.lat}, {$w.lng});
+m = new BMap.Marker(pt);
+m.addEventListener("click", function(){ 
+     var sContent ="<div class='news-item-detail'><ul>";
+     sContent +="<li><a href='#' class='news-item-title'>{$w.title}</a><p class='news-item-preview'>{$w.digist}</p></li>";
+     var infoWindow = new BMap.InfoWindow(sContent);
+     this.openInfoWindow(infoWindow);         
+});
+markers.push(m);
+</volist>
+var markerClusterer = new BMapLib.MarkerClusterer(map, {markers:markers});
 </script>
