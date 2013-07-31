@@ -2,7 +2,7 @@
 class ReportAction extends Action {
 
 	public function open(){
-		Vendor ("flashchart.Includes.FusionCharts");
+		Vendor ("flashchart.Includes.FusionChartsHtmlFive");
 		$count_common = M("Site")->where("state=0")->count();
 		$count_pause = M("Site")->where("state=1")->count();
 		$count_del = M("Site")->where("state=2")->count();
@@ -11,16 +11,16 @@ class ReportAction extends Action {
 		$count_bo = M("Site")->where("runMode=2")->count();
 		$count_keyword = M("Keyword")->count();
 		$count_warn =M("KeywordPage")->count();
-		$chart_stauts=renderChartHTML ( "../Public/Charts/Pie2D.swf?ChartNoDataText=%E6%B2%A1%E6%9C%89%E5%8F%AF%E6%98%BE%E7%A4%BA%E7%9A%84%E6%95%B0%E6%8D%AE&PBarLoadingText=%E6%AD%A3%E5%9C%A8%E8%BD%BD%E5%85%A5%E5%9B%BE%E8%A1%A8%EF%BC%8C%E8%AF%B7%E7%A8%8D%E5%80%99&XMLLoadingText=%E6%AD%A3%E5%9C%A8%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE%EF%BC%8C%E8%AF%B7%E7%A8%8D%E5%80%99",
-		urlencode ("__URL__/taskstatus"), "", "blockday", "100%", 268, false );
-		$chart_mode=renderChartHTML ( "../Public/Charts/Pie2D.swf?ChartNoDataText=%E6%B2%A1%E6%9C%89%E5%8F%AF%E6%98%BE%E7%A4%BA%E7%9A%84%E6%95%B0%E6%8D%AE&PBarLoadingText=%E6%AD%A3%E5%9C%A8%E8%BD%BD%E5%85%A5%E5%9B%BE%E8%A1%A8%EF%BC%8C%E8%AF%B7%E7%A8%8D%E5%80%99&XMLLoadingText=%E6%AD%A3%E5%9C%A8%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE%EF%BC%8C%E8%AF%B7%E7%A8%8D%E5%80%99",
-		urlencode ("__URL__/taskmode"), "", "blockday", "100%", 268, false );
-		$chart_daypage =renderChartHTML ( "../Public/Charts/MSArea.swf?ChartNoDataText=%E6%B2%A1%E6%9C%89%E5%8F%AF%E6%98%BE%E7%A4%BA%E7%9A%84%E6%95%B0%E6%8D%AE&PBarLoadingText=%E6%AD%A3%E5%9C%A8%E8%BD%BD%E5%85%A5%E5%9B%BE%E8%A1%A8%EF%BC%8C%E8%AF%B7%E7%A8%8D%E5%80%99&XMLLoadingText=%E6%AD%A3%E5%9C%A8%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE%EF%BC%8C%E8%AF%B7%E7%A8%8D%E5%80%99",
-		urlencode ("__URL__/countdaypage"), "", "blockday", "100%", 164, false );
-		$chart_hourpage =renderChartHTML ( "../Public/Charts/MSLine.swf?ChartNoDataText=%E6%B2%A1%E6%9C%89%E5%8F%AF%E6%98%BE%E7%A4%BA%E7%9A%84%E6%95%B0%E6%8D%AE&PBarLoadingText=%E6%AD%A3%E5%9C%A8%E8%BD%BD%E5%85%A5%E5%9B%BE%E8%A1%A8%EF%BC%8C%E8%AF%B7%E7%A8%8D%E5%80%99&XMLLoadingText=%E6%AD%A3%E5%9C%A8%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE%EF%BC%8C%E8%AF%B7%E7%A8%8D%E5%80%99",
-		urlencode ("__URL__/counthourpage"), "", "blockday", "100%", 164, false );
-		$chart_sitepage =renderChartHTML ( "../Public/Charts/MSLine.swf?ChartNoDataText=%E6%B2%A1%E6%9C%89%E5%8F%AF%E6%98%BE%E7%A4%BA%E7%9A%84%E6%95%B0%E6%8D%AE&PBarLoadingText=%E6%AD%A3%E5%9C%A8%E8%BD%BD%E5%85%A5%E5%9B%BE%E8%A1%A8%EF%BC%8C%E8%AF%B7%E7%A8%8D%E5%80%99&XMLLoadingText=%E6%AD%A3%E5%9C%A8%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE%EF%BC%8C%E8%AF%B7%E7%A8%8D%E5%80%99",
-		urlencode ("__URL__/countsitepage_muti"), "", "blockday", "100%", 164, false );
+		$chart_stauts=renderChart ( "../Public/Charts/Pie2D.swf?ChartNoDataText=%E6%B2%A1%E6%9C%89%E5%8F%AF%E6%98%BE%E7%A4%BA%E7%9A%84%E6%95%B0%E6%8D%AE&PBarLoadingText=%E6%AD%A3%E5%9C%A8%E8%BD%BD%E5%85%A5%E5%9B%BE%E8%A1%A8%EF%BC%8C%E8%AF%B7%E7%A8%8D%E5%80%99&XMLLoadingText=%E6%AD%A3%E5%9C%A8%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE%EF%BC%8C%E8%AF%B7%E7%A8%8D%E5%80%99",
+		urlencode ("__URL__/taskstatus"), "", "chart_stauts", "100%", 268, false );
+		$chart_mode=renderChart ( "../Public/Charts/Pie2D.swf?ChartNoDataText=%E6%B2%A1%E6%9C%89%E5%8F%AF%E6%98%BE%E7%A4%BA%E7%9A%84%E6%95%B0%E6%8D%AE&PBarLoadingText=%E6%AD%A3%E5%9C%A8%E8%BD%BD%E5%85%A5%E5%9B%BE%E8%A1%A8%EF%BC%8C%E8%AF%B7%E7%A8%8D%E5%80%99&XMLLoadingText=%E6%AD%A3%E5%9C%A8%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE%EF%BC%8C%E8%AF%B7%E7%A8%8D%E5%80%99",
+		urlencode ("__URL__/taskmode"), "", "chart_mode", "100%", 268, false );
+		$chart_daypage =renderChart ( "../Public/Charts/MSArea.swf?ChartNoDataText=%E6%B2%A1%E6%9C%89%E5%8F%AF%E6%98%BE%E7%A4%BA%E7%9A%84%E6%95%B0%E6%8D%AE&PBarLoadingText=%E6%AD%A3%E5%9C%A8%E8%BD%BD%E5%85%A5%E5%9B%BE%E8%A1%A8%EF%BC%8C%E8%AF%B7%E7%A8%8D%E5%80%99&XMLLoadingText=%E6%AD%A3%E5%9C%A8%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE%EF%BC%8C%E8%AF%B7%E7%A8%8D%E5%80%99",
+		urlencode ("__URL__/countdaypage"), "", "chart_daypage", "100%", 164, false );
+		$chart_hourpage =renderChart ( "../Public/Charts/MSLine.swf?ChartNoDataText=%E6%B2%A1%E6%9C%89%E5%8F%AF%E6%98%BE%E7%A4%BA%E7%9A%84%E6%95%B0%E6%8D%AE&PBarLoadingText=%E6%AD%A3%E5%9C%A8%E8%BD%BD%E5%85%A5%E5%9B%BE%E8%A1%A8%EF%BC%8C%E8%AF%B7%E7%A8%8D%E5%80%99&XMLLoadingText=%E6%AD%A3%E5%9C%A8%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE%EF%BC%8C%E8%AF%B7%E7%A8%8D%E5%80%99",
+		urlencode ("__URL__/counthourpage"), "", "chart_hourpage", "100%", 164, false );
+		$chart_sitepage =renderChart ( "../Public/Charts/MSLine.swf?ChartNoDataText=%E6%B2%A1%E6%9C%89%E5%8F%AF%E6%98%BE%E7%A4%BA%E7%9A%84%E6%95%B0%E6%8D%AE&PBarLoadingText=%E6%AD%A3%E5%9C%A8%E8%BD%BD%E5%85%A5%E5%9B%BE%E8%A1%A8%EF%BC%8C%E8%AF%B7%E7%A8%8D%E5%80%99&XMLLoadingText=%E6%AD%A3%E5%9C%A8%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE%EF%BC%8C%E8%AF%B7%E7%A8%8D%E5%80%99",
+		urlencode ("__URL__/countsitepage_muti"), "", "chart_sitepage", "100%", 164, false );
 		$this->assign("count_common",$count_common);
 		$this->assign("count_pause",$count_pause);
 		$this->assign("count_del",$count_del);
@@ -37,11 +37,11 @@ class ReportAction extends Action {
 		$this->display('./Tpl/report/report.html');
 	}
 	public function keypage(){
-		Vendor ("flashchart.Includes.FusionCharts");
-		$chart_keywordpage =renderChartHTML ( "../Public/Charts/Column2D.swf?ChartNoDataText=%E6%B2%A1%E6%9C%89%E5%8F%AF%E6%98%BE%E7%A4%BA%E7%9A%84%E6%95%B0%E6%8D%AE&PBarLoadingText=%E6%AD%A3%E5%9C%A8%E8%BD%BD%E5%85%A5%E5%9B%BE%E8%A1%A8%EF%BC%8C%E8%AF%B7%E7%A8%8D%E5%80%99&XMLLoadingText=%E6%AD%A3%E5%9C%A8%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE%EF%BC%8C%E8%AF%B7%E7%A8%8D%E5%80%99",
-		urlencode ("__URL__/countkeywordpage"), "", "blockday", "100%", 300, false );
-		$chart_keywordcategory =renderChartHTML ( "../Public/Charts/StackedColumn2D.swf?ChartNoDataText=%E6%B2%A1%E6%9C%89%E5%8F%AF%E6%98%BE%E7%A4%BA%E7%9A%84%E6%95%B0%E6%8D%AE&PBarLoadingText=%E6%AD%A3%E5%9C%A8%E8%BD%BD%E5%85%A5%E5%9B%BE%E8%A1%A8%EF%BC%8C%E8%AF%B7%E7%A8%8D%E5%80%99&XMLLoadingText=%E6%AD%A3%E5%9C%A8%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE%EF%BC%8C%E8%AF%B7%E7%A8%8D%E5%80%99",
-		urlencode ("__URL__/countkeywordcategory"), "", "blockday", "100%", 300, false );
+		Vendor ("flashchart.Includes.FusionChartsHtmlFive");
+		$chart_keywordpage =renderChart( "../Public/Charts/Column2D.swf?ChartNoDataText=%E6%B2%A1%E6%9C%89%E5%8F%AF%E6%98%BE%E7%A4%BA%E7%9A%84%E6%95%B0%E6%8D%AE&PBarLoadingText=%E6%AD%A3%E5%9C%A8%E8%BD%BD%E5%85%A5%E5%9B%BE%E8%A1%A8%EF%BC%8C%E8%AF%B7%E7%A8%8D%E5%80%99&XMLLoadingText=%E6%AD%A3%E5%9C%A8%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE%EF%BC%8C%E8%AF%B7%E7%A8%8D%E5%80%99",
+		urlencode ("__URL__/countkeywordpage"), "", "chart_keywordpage", "100%", 300, false );
+		$chart_keywordcategory =renderChart ( "../Public/Charts/StackedColumn2D.swf?ChartNoDataText=%E6%B2%A1%E6%9C%89%E5%8F%AF%E6%98%BE%E7%A4%BA%E7%9A%84%E6%95%B0%E6%8D%AE&PBarLoadingText=%E6%AD%A3%E5%9C%A8%E8%BD%BD%E5%85%A5%E5%9B%BE%E8%A1%A8%EF%BC%8C%E8%AF%B7%E7%A8%8D%E5%80%99&XMLLoadingText=%E6%AD%A3%E5%9C%A8%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE%EF%BC%8C%E8%AF%B7%E7%A8%8D%E5%80%99",
+		urlencode ("__URL__/countkeywordcategory"), "", "chart_keywordcategory", "100%", 300, false );
 		$this->data = M("Site")->select();
 		$this->assign("chart_keywordpage",$chart_keywordpage);
 		$this->assign("chart_keywordcategory",$chart_keywordcategory);
@@ -65,7 +65,11 @@ class ReportAction extends Action {
 			}
 		}
 		$strxml.="<styles><definition><style name='CaptionFont' type='font' bold='0' size='12' /></definition><application><apply toObject='subcaption' styles='CaptionFont' /></application></styles></chart>";
-		echo $strxml;
+		if($this->isAjax()){
+			echo iconv("gb2312","utf-8",$strxml);
+		}else{
+			echo $strxml;
+		}
 	}
 	public function taskmode(){
 		$data = M("Site")->field("count(id) as num,runMode")->group("runMode")->select();
@@ -85,7 +89,11 @@ class ReportAction extends Action {
 			}
 		}
 		$strxml.="</chart>";
-		echo $strxml;
+		if($this->isAjax()){
+			echo iconv("gb2312","utf-8",$strxml);
+		}else{
+			echo $strxml;
+		}
 	}
 	public function countdaypage(){
 		$data =M("Link")->field("count(id) as num,DATE_FORMAT(lastCrawDate,'%Y-%m-%d') date")->where("lastCrawDate >'".date("Y-m-d",strtotime("-10 day"))."'")->group("date")->select();
@@ -101,7 +109,11 @@ class ReportAction extends Action {
 		color='FF9933' plotBorderColor='FF9900'>";
 		$strxml.=$strdataset;
 		$strxml.='</dataset><styles><definition><style name="CaptionFont" type="font" size="12"  /><style name="myLegendFont" type="font" size="11"  /></definition><application><apply toObject="CAPTION" styles="CaptionFont"  /><apply toObject="SUBCAPTION" styles="CaptionFont"  /><apply toObject="Legend" styles="myLegendFont"  /></application></styles></chart>';
-		echo $strxml;
+		if($this->isAjax()){
+			echo iconv("gb2312","utf-8",$strxml);
+		}else{
+			echo $strxml;
+		}
 	}
 
 	public function counthourpage(){
@@ -115,10 +127,14 @@ class ReportAction extends Action {
 			$strdataset.="<set value='".$v["num"]."' />";
 		}
 		$strxml .=$strcategory."</categories><dataset seriesName='".iconv("utf-8","gb2312","小时增量")."' 
-		color='0033CC' anchorBorderColor='0033CC' color='FF9933' plotBorderColor='FF9900'>";
+		color='0033CC' anchorBorderColor='0033CC' plotBorderColor='FF9900'>";
 		$strxml.=$strdataset;
 		$strxml.='</dataset><styles><definition><style name="CaptionFont" type="font" size="12"  /><style name="myLegendFont" type="font" size="11"  /></definition><application><apply toObject="CAPTION" styles="CaptionFont"  /><apply toObject="SUBCAPTION" styles="CaptionFont"  /><apply toObject="Legend" styles="myLegendFont"  /></application></styles></chart>';
-		echo $strxml;
+		if($this->isAjax()){
+			echo iconv("gb2312","utf-8",$strxml);
+		}else{
+			echo $strxml;
+		}
 	}
 	public function countsitepage(){
 		$data =M("Site")->field("count(1) as num,DATE_FORMAT(lastupdatetime,'%Y-%m-%d') day")->group("day")->select();
@@ -134,7 +150,11 @@ class ReportAction extends Action {
 		color='FF0000' anchorBorderColor='0033CC' color='FF9933' plotBorderColor='FF9900'>";
 		$strxml.=$strdataset;
 		$strxml.='</dataset><styles><definition><style name="CaptionFont" type="font" size="12"  /><style name="myLegendFont" type="font" size="11"  /></definition><application><apply toObject="CAPTION" styles="CaptionFont"  /><apply toObject="SUBCAPTION" styles="CaptionFont"  /><apply toObject="Legend" styles="myLegendFont"  /></application></styles></chart>';
-		echo $strxml;
+		if($this->isAjax()){
+			echo iconv("gb2312","utf-8",$strxml);
+		}else{
+			echo $strxml;
+		}
 	}
 	public function countsitepage_muti(){
 		$cate = M("Link")->field("DATE_FORMAT(lastCrawDate,'%Y-%m-%d') day")->where("lastCrawDate >'".date("Y-m-d",strtotime("-7 day"))."'")->group("day")->select();
@@ -154,7 +174,12 @@ class ReportAction extends Action {
 			$strxml.="</dataset>";
 		}
 		$strxml .='<styles><definition><style name="CaptionFont" type="font" size="12"  /><style name="myLegendFont" type="font" size="12"  /></definition><application><apply toObject="CAPTION" styles="CaptionFont"  /><apply toObject="SUBCAPTION" styles="CaptionFont"  /><apply toObject="Legend" styles="myLegendFont"  /></application></styles></chart>';
-		echo $strxml;
+		if($this->isAjax()){
+			echo iconv("gb2312","utf-8",$strxml);
+		}else{
+			echo $strxml;
+		}
+
 	}
 	public function countkeypage(){
 		$data =M("KeywordPage")->field("count(1) as num,DATE_FORMAT(checkDate,'%Y-%m-%d') day")->where("checkDate >'".date("Y-m-d",strtotime("-7 day"))."'")->group("day")->select();
@@ -167,10 +192,14 @@ class ReportAction extends Action {
 			$strdataset.="<set value='".$v["num"]."' />";
 		}
 		$strxml .=$strcategory."</categories><dataset seriesName='".iconv("utf-8","gb2312","站点增量")."' 
-		color='FF0000' anchorBorderColor='0033CC' color='FF9933' plotBorderColor='FF9900'>";
+		color='FF0000' anchorBorderColor='0033CC' plotBorderColor='FF9900'>";
 		$strxml.=$strdataset;
 		$strxml.='</dataset><styles><definition><style name="CaptionFont" type="font" size="12"  /><style name="myLegendFont" type="font" size="11"  /><style name="TrendAnim" type="animation" param="_alpha" duration="1" start="1"  /></definition><application><apply toObject="CAPTION" styles="CaptionFont"  /><apply toObject="SUBCAPTION" styles="CaptionFont"  /><apply toObject="Legend" styles="myLegendFont"  /><apply toObject="TRENDLINES" styles="TrendAnim" /></application></styles></chart>';
-		echo $strxml;
+		if($this->isAjax()){
+			echo iconv("gb2312","utf-8",$strxml);
+		}else{
+			echo $strxml;
+		}
 	}
 
 	public function countkeywordpage(){
@@ -182,7 +211,11 @@ class ReportAction extends Action {
 		}
 		$strxml.=$strdataset;
 		$strxml.='<styles><definition><style name="CaptionFont" type="font" size="12"  /><style name="myLegendFont" type="font" size="12"  /></definition><application><apply toObject="CAPTION" styles="CaptionFont"  /><apply toObject="SUBCAPTION" styles="CaptionFont"  /><apply toObject="Legend" styles="myLegendFont"  /></application></styles></chart>';
-		echo $strxml;
+		if($this->isAjax()){
+			echo iconv("gb2312","utf-8",$strxml);
+		}else{
+			echo $strxml;
+		}
 	}
 
 	public function countkeywordcategory(){
@@ -212,7 +245,11 @@ class ReportAction extends Action {
 		}
 		$strxml.=$strdataset;
 		$strxml.='<styles><definition><style name="CaptionFont" type="font" size="12"  /><style name="myLegendFont" type="font" size="12"  /></definition><application><apply toObject="CAPTION" styles="CaptionFont"  /><apply toObject="SUBCAPTION" styles="CaptionFont"  /><apply toObject="Legend" styles="myLegendFont"  /><apply toObject="categories" styles="myLegendFont" /></application></styles></chart>';
-		echo $strxml;
+		if($this->isAjax()){
+			echo iconv("gb2312","utf-8",$strxml);
+		}else{
+			echo $strxml;
+		}
 	}
 	public function getpagenums(){
 		$id = I("get.id",0);
