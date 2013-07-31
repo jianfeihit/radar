@@ -10,11 +10,18 @@ class SearchAction extends Action {
         if(empty($query)){
             $this->error("搜索词不能为空！");
         }
+        import('ORG.Util.Page');
+        $Page = new Page(10,10);
         $seacher = C("SEARCHER");
-        $resp = file_get_contents($seacher."/search/detailSearch?query=".$query);
+//        echo $seacher."/search/detailSearch?query=".$query."&pageStart=".($_GET["_URL_"][5]);
+        $resp = file_get_contents($seacher."/search/detailSearch?query=".$query."&pageStart=".($_GET["_URL_"][5]));
         $ret = json_decode($resp, true);
         $this->assign('hits',$ret["result"]);
         $this->assign('q',$query);
+        $Page = new Page($ret["total"],10);
+		$Page->parameter.=   "q=".urlencode($query).'&';
+		$show = $Page->show();
+		$this->assign('page',$show);
         $this->display('./Tpl/search/queryintranet.html');
     }
     

@@ -57,6 +57,18 @@ class SystemAction extends Action {
 		$fet=time()+microtime();
 		$this->timeone = round($et-$st,4);
 		$this->timetwo = round($fet-$fst,4);
+		$crawlerState = M()->query("SELECT value FROM t_system_monitor where type='crawler' and SYSDATE()-lastupdatetime<30*60");
+		if(count($crawlerState)==1){
+			$this->assign('crawlerstate',$crawlerState[0][0]);
+		}else{
+			$this->assign('crawlerstate',0);
+		}
+		$dbstate = M()->query("SELECT value FROM t_system_monitor where type='db' and SYSDATE()-lastupdatetime<30*60");
+		if(count($dbstate)==1){
+			$this->assign('dbstate',$dbstate[0][0]);
+		}else{
+			$this->assign('dbstate',0);
+		}
 		$this->display();
 	}
 }
