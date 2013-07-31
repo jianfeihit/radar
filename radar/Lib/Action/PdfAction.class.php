@@ -43,7 +43,7 @@ EOF;
 		$pdf->lastPage();
 		$pdfTitle = 'report-'.date('YmdHis',time()).'.pdf';
 		$pdfFile = C('FILE_TEMP').'/'.$pdfTitle;
-		$pdf->Output($pdfFile, 'F');
+		$loginuser=session("loginuser");
 		$ary=array(
 			'title'=>$pdfTitle,
 			'path'=>$pdfFile,
@@ -51,7 +51,8 @@ EOF;
 			'createTime'=>date("Y-m-d H:i:s")
 		);
 		M("bulletins")->add($ary);
-		$pdf->Output('report.pdf', 'D');
+		$pdf->Output($pdfFile, 'FD');
+		//$pdf->Output('report.pdf', 'D');
 	}
 
 	public function viewPdf(){
