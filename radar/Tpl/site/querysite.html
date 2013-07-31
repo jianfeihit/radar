@@ -66,8 +66,8 @@
 								</td>
 								<td><if condition="$v.state == 0"><span class="badge badge-success">运行中</span><elseif condition="$v.state == 1"/><span class="badge badge-warning">暂停中</span><else /><span class="badge badge-info">已删除</span></if></td>
 								<td>{$v.keywords}</td>
-								<td><span class="badge badge-warning infonums" dataindex="{$v.id}" id="index{$v.id}" style="cursor:pointer;" onclick="location.href='{:U('Warn/query')}';">Loading...</span></td>
-								<td><i><span class="badge badge-info infonums_key" dataindex="{$v.id}" id="indexkey{$v.id}" style="cursor:pointer;">Loading...</span></i></td>
+								<td><span class="badge badge-warning infonums" dataindex="{$v.id}" id="index{$v.id}" style="cursor:pointer;" onclick="location.href='{$v.siteName|U='Warn/query','st=s&param='.###}';">Loading...</span></td>
+								<td><i><span class="badge badge-info infonums_key" dataindex="{$v.id}" id="indexkey{$v.id}" style="cursor:pointer;" onclick="location.href='{$v.siteName|U='Warn/query','st=s&param='.###}';">Loading...</span></i></td>
 								<td>{$v.lastupdatetime}</td>
 								<td class="td-actions">
 									<a href="__URL__/edit?id={$v.id}" class="btn btn-small btn-warning">

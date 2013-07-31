@@ -11,7 +11,7 @@ class WarnAction extends Action {
 
 		if($st == "s"){// 按照网站名称查询
 			$qmap['siteName'] = array("like","%$param%");
-			$count= $kobj->count();
+			$count= $kobj->where($qmap)->count();
 			$Page = new Page($count,10);
 			$show = $Page->show();
 			$Page->parameter   .=   "param=".urlencode($param).'&';

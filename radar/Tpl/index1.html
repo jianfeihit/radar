@@ -130,7 +130,7 @@ pt = new BMap.Point({$w.lat}, {$w.lng});
 m = new BMap.Marker(pt);
 m.addEventListener("click", function(){ 
      var sContent ="<div class='news-item-detail'><ul>";
-     sContent +="<li><a href='#' class='news-item-title'>{$w.title}</a><p class='news-item-preview'>{$w.digist}</p></li>";
+     sContent +="<li><a href='#' class='news-item-title'>{$w.title}</a><p class='news-item-preview'>{$w.digist|str_replace='"','',###}</p></li>";
      var infoWindow = new BMap.InfoWindow(sContent);
      this.openInfoWindow(infoWindow);         
 });

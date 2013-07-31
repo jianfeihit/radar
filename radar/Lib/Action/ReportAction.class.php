@@ -12,15 +12,15 @@ class ReportAction extends Action {
 		$count_keyword = M("Keyword")->count();
 		$count_warn =M("KeywordPage")->count();
 		$chart_stauts=renderChartHTML ( "../Public/Charts/Pie2D.swf?ChartNoDataText=%E6%B2%A1%E6%9C%89%E5%8F%AF%E6%98%BE%E7%A4%BA%E7%9A%84%E6%95%B0%E6%8D%AE&PBarLoadingText=%E6%AD%A3%E5%9C%A8%E8%BD%BD%E5%85%A5%E5%9B%BE%E8%A1%A8%EF%BC%8C%E8%AF%B7%E7%A8%8D%E5%80%99&XMLLoadingText=%E6%AD%A3%E5%9C%A8%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE%EF%BC%8C%E8%AF%B7%E7%A8%8D%E5%80%99",
-		urlencode ("__URL__/taskstatus"), "", "blockday", "553", 268, false );
+		urlencode ("__URL__/taskstatus"), "", "blockday", "100%", 268, false );
 		$chart_mode=renderChartHTML ( "../Public/Charts/Pie2D.swf?ChartNoDataText=%E6%B2%A1%E6%9C%89%E5%8F%AF%E6%98%BE%E7%A4%BA%E7%9A%84%E6%95%B0%E6%8D%AE&PBarLoadingText=%E6%AD%A3%E5%9C%A8%E8%BD%BD%E5%85%A5%E5%9B%BE%E8%A1%A8%EF%BC%8C%E8%AF%B7%E7%A8%8D%E5%80%99&XMLLoadingText=%E6%AD%A3%E5%9C%A8%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE%EF%BC%8C%E8%AF%B7%E7%A8%8D%E5%80%99",
-		urlencode ("__URL__/taskmode"), "", "blockday", "553", 268, false );
+		urlencode ("__URL__/taskmode"), "", "blockday", "100%", 268, false );
 		$chart_daypage =renderChartHTML ( "../Public/Charts/MSArea.swf?ChartNoDataText=%E6%B2%A1%E6%9C%89%E5%8F%AF%E6%98%BE%E7%A4%BA%E7%9A%84%E6%95%B0%E6%8D%AE&PBarLoadingText=%E6%AD%A3%E5%9C%A8%E8%BD%BD%E5%85%A5%E5%9B%BE%E8%A1%A8%EF%BC%8C%E8%AF%B7%E7%A8%8D%E5%80%99&XMLLoadingText=%E6%AD%A3%E5%9C%A8%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE%EF%BC%8C%E8%AF%B7%E7%A8%8D%E5%80%99",
-		urlencode ("__URL__/countdaypage"), "", "blockday", "350", 164, false );
+		urlencode ("__URL__/countdaypage"), "", "blockday", "100%", 164, false );
 		$chart_hourpage =renderChartHTML ( "../Public/Charts/MSLine.swf?ChartNoDataText=%E6%B2%A1%E6%9C%89%E5%8F%AF%E6%98%BE%E7%A4%BA%E7%9A%84%E6%95%B0%E6%8D%AE&PBarLoadingText=%E6%AD%A3%E5%9C%A8%E8%BD%BD%E5%85%A5%E5%9B%BE%E8%A1%A8%EF%BC%8C%E8%AF%B7%E7%A8%8D%E5%80%99&XMLLoadingText=%E6%AD%A3%E5%9C%A8%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE%EF%BC%8C%E8%AF%B7%E7%A8%8D%E5%80%99",
-		urlencode ("__URL__/counthourpage"), "", "blockday", "350", 164, false );
+		urlencode ("__URL__/counthourpage"), "", "blockday", "100%", 164, false );
 		$chart_sitepage =renderChartHTML ( "../Public/Charts/MSLine.swf?ChartNoDataText=%E6%B2%A1%E6%9C%89%E5%8F%AF%E6%98%BE%E7%A4%BA%E7%9A%84%E6%95%B0%E6%8D%AE&PBarLoadingText=%E6%AD%A3%E5%9C%A8%E8%BD%BD%E5%85%A5%E5%9B%BE%E8%A1%A8%EF%BC%8C%E8%AF%B7%E7%A8%8D%E5%80%99&XMLLoadingText=%E6%AD%A3%E5%9C%A8%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE%EF%BC%8C%E8%AF%B7%E7%A8%8D%E5%80%99",
-		urlencode ("__URL__/countsitepage"), "", "blockday", "350", 164, false );
+		urlencode ("__URL__/countsitepage_muti"), "", "blockday", "100%", 164, false );
 		$this->assign("count_common",$count_common);
 		$this->assign("count_pause",$count_pause);
 		$this->assign("count_del",$count_del);
@@ -39,9 +39,9 @@ class ReportAction extends Action {
 	public function keypage(){
 		Vendor ("flashchart.Includes.FusionCharts");
 		$chart_keywordpage =renderChartHTML ( "../Public/Charts/Column2D.swf?ChartNoDataText=%E6%B2%A1%E6%9C%89%E5%8F%AF%E6%98%BE%E7%A4%BA%E7%9A%84%E6%95%B0%E6%8D%AE&PBarLoadingText=%E6%AD%A3%E5%9C%A8%E8%BD%BD%E5%85%A5%E5%9B%BE%E8%A1%A8%EF%BC%8C%E8%AF%B7%E7%A8%8D%E5%80%99&XMLLoadingText=%E6%AD%A3%E5%9C%A8%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE%EF%BC%8C%E8%AF%B7%E7%A8%8D%E5%80%99",
-		urlencode ("__URL__/countkeywordpage"), "", "blockday", "1150", 300, false );
+		urlencode ("__URL__/countkeywordpage"), "", "blockday", "100%", 300, false );
 		$chart_keywordcategory =renderChartHTML ( "../Public/Charts/MSColumn2D.swf?ChartNoDataText=%E6%B2%A1%E6%9C%89%E5%8F%AF%E6%98%BE%E7%A4%BA%E7%9A%84%E6%95%B0%E6%8D%AE&PBarLoadingText=%E6%AD%A3%E5%9C%A8%E8%BD%BD%E5%85%A5%E5%9B%BE%E8%A1%A8%EF%BC%8C%E8%AF%B7%E7%A8%8D%E5%80%99&XMLLoadingText=%E6%AD%A3%E5%9C%A8%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE%EF%BC%8C%E8%AF%B7%E7%A8%8D%E5%80%99",
-		urlencode ("__URL__/countkeywordcategory"), "", "blockday", "1150", 300, false );
+		urlencode ("__URL__/countkeywordcategory"), "", "blockday", "100%", 300, false );
 		$this->data = M("Site")->select();
 		$this->assign("chart_keywordpage",$chart_keywordpage);
 		$this->assign("chart_keywordcategory",$chart_keywordcategory);
@@ -89,7 +89,7 @@ class ReportAction extends Action {
 	}
 	public function countdaypage(){
 		$data =M("Link")->field("count(id) as num,DATE_FORMAT(lastCrawDate,'%Y-%m-%d') date")->where("lastCrawDate >'".date("Y-m-d",strtotime("-10 day"))."'")->group("date")->select();
-		$strxml="<chart showFCMenuItem='0' lineThickness='2' showValues='0' anchorRadius='4' divLineAlpha='20' divLineColor='CC3300' divLineIsDashed='1' showAlternateHGridColor='1' alternateHGridAlpha='5' alternateHGridColor='CC3300' shadowAlpha='40' labelStep='1' numvdivlines='".(sizeof($data)-2)."' showAlternateVGridColor='1' chartsshowShadow='1' chartRightMargin='20' chartTopMargin='15' chartLeftMargin='0' chartBottomMargin='3' bgColor='FFFFFF' canvasBorderThickness='1' showBorder='0' legendBorderAlpha='0' bgAngle='360' showlegend='0' borderColor='DEF3F3' toolTipBorderColor='cccc99' canvasPadding='0' toolTipBgColor='ffffcc' legendShadow='0' baseFontSize='12' canvasBorderAlpha='20' outCnvbaseFontSize='10' outCnvbaseFontColor='000000' numberScaleValue='10000,1,1,1000' formatNumberScale='1' palette='2'  lineColor='AFD8F8'>";
+		$strxml="<chart showFCMenuItem='0' lineThickness='2' showValues='0' anchorRadius='4' divLineAlpha='20' divLineColor='CC3300' divLineIsDashed='1' showAlternateHGridColor='1' alternateHGridAlpha='5' alternateHGridColor='CC3300' shadowAlpha='40' labelStep='1' numvdivlines='".(sizeof($data)-2)."' showAlternateVGridColor='1' chartsshowShadow='1' chartRightMargin='20' chartTopMargin='15' chartLeftMargin='0' chartBottomMargin='3' bgColor='FFFFFF' canvasBorderThickness='1' showBorder='0' legendBorderAlpha='0' bgAngle='360' showlegend='0' borderColor='DEF3F3' toolTipBorderColor='cccc99' canvasPadding='0' toolTipBgColor='ffffcc' legendShadow='0' baseFontSize='12' canvasBorderAlpha='20' outCnvbaseFontSize='12' outCnvbaseFontColor='000000' numberScaleValue='10000,1,1,1000' formatNumberScale='1' palette='2'  lineColor='AFD8F8'>";
 		$strxml.="<categories>";
 		$strcategory="";
 		$strdataset="";
@@ -106,7 +106,7 @@ class ReportAction extends Action {
 
 	public function counthourpage(){
 		$data =M("Link")->field("count(1) as num,DATE_FORMAT(lastCrawDate,'%H') hour")->group("hour")->select();
-		$strxml="<chart showFCMenuItem='0' lineThickness='2' showValues='0' anchorRadius='4' divLineAlpha='20' divLineColor='CC3300' divLineIsDashed='1' showAlternateHGridColor='1' alternateHGridAlpha='5' alternateHGridColor='CC3300' shadowAlpha='40' labelStep='1' numvdivlines='".(sizeof($data)-2)."' showAlternateVGridColor='1' chartsshowShadow='1' chartRightMargin='20' chartTopMargin='15' chartLeftMargin='0' chartBottomMargin='3' bgColor='FFFFFF' canvasBorderThickness='1' showBorder='0' legendBorderAlpha='0' bgAngle='360' showlegend='0' borderColor='DEF3F3' toolTipBorderColor='cccc99' canvasPadding='0' toolTipBgColor='ffffcc' legendShadow='0' baseFontSize='12' canvasBorderAlpha='20' outCnvbaseFontSize='10' outCnvbaseFontColor='000000' numberScaleValue='10000,1,1,1000' formatNumberScale='1' palette='2'  lineColor='AFD8F8'>";
+		$strxml="<chart showFCMenuItem='0' lineThickness='2' showValues='0' anchorRadius='4' divLineAlpha='20' divLineColor='CC3300' divLineIsDashed='1' showAlternateHGridColor='1' alternateHGridAlpha='5' alternateHGridColor='CC3300' shadowAlpha='40' labelStep='1' numvdivlines='".(sizeof($data)-2)."' showAlternateVGridColor='1' chartsshowShadow='1' chartRightMargin='20' chartTopMargin='15' chartLeftMargin='0' chartBottomMargin='3' bgColor='FFFFFF' canvasBorderThickness='1' showBorder='0' legendBorderAlpha='0' bgAngle='360' showlegend='0' borderColor='DEF3F3' toolTipBorderColor='cccc99' canvasPadding='0' toolTipBgColor='ffffcc' legendShadow='0' baseFontSize='12' canvasBorderAlpha='20' outCnvbaseFontSize='12' outCnvbaseFontColor='000000' numberScaleValue='10000,1,1,1000' formatNumberScale='1' palette='2'  lineColor='AFD8F8'>";
 		$strxml.="<categories>";
 		$strcategory="";
 		$strdataset="";
@@ -122,7 +122,7 @@ class ReportAction extends Action {
 	}
 	public function countsitepage(){
 		$data =M("Site")->field("count(1) as num,DATE_FORMAT(lastupdatetime,'%Y-%m-%d') day")->group("day")->select();
-		$strxml="<chart showFCMenuItem='0' lineThickness='2' showValues='0' anchorRadius='4' divLineAlpha='20' divLineColor='CC3300' divLineIsDashed='1' showAlternateHGridColor='1' alternateHGridAlpha='5' alternateHGridColor='CC3300' shadowAlpha='40' labelStep='1' numvdivlines='".(sizeof($data)-2)."' showAlternateVGridColor='1' chartsshowShadow='1' chartRightMargin='20' chartTopMargin='15' chartLeftMargin='0' chartBottomMargin='3' bgColor='FFFFFF' canvasBorderThickness='1' showBorder='0' legendBorderAlpha='0' bgAngle='360' showlegend='0' borderColor='DEF3F3' toolTipBorderColor='cccc99' canvasPadding='0' toolTipBgColor='ffffcc' legendShadow='0' baseFontSize='12' canvasBorderAlpha='20' outCnvbaseFontSize='10' outCnvbaseFontColor='000000' numberScaleValue='10000,1,1,1000' formatNumberScale='1' palette='2'  lineColor='AFD8F8'>";
+		$strxml="<chart showFCMenuItem='0' lineThickness='2' showValues='0' anchorRadius='4' divLineAlpha='20' divLineColor='CC3300' divLineIsDashed='1' showAlternateHGridColor='1' alternateHGridAlpha='5' alternateHGridColor='CC3300' shadowAlpha='40' labelStep='1' numvdivlines='".(sizeof($data)-2)."' showAlternateVGridColor='1' chartsshowShadow='1' chartRightMargin='20' chartTopMargin='15' chartLeftMargin='0' chartBottomMargin='3' bgColor='FFFFFF' canvasBorderThickness='1' showBorder='0' legendBorderAlpha='0' bgAngle='360' showlegend='0' borderColor='DEF3F3' toolTipBorderColor='cccc99' canvasPadding='0' toolTipBgColor='ffffcc' legendShadow='0' baseFontSize='12' canvasBorderAlpha='20' outCnvbaseFontSize='12' outCnvbaseFontColor='000000' numberScaleValue='10000,1,1,1000' formatNumberScale='1' palette='2'  lineColor='AFD8F8'>";
 		$strxml.="<categories>";
 		$strcategory="";
 		$strdataset="";
@@ -136,9 +136,29 @@ class ReportAction extends Action {
 		$strxml.='</dataset><styles><definition><style name="CaptionFont" type="font" size="12"  /><style name="myLegendFont" type="font" size="11"  /></definition><application><apply toObject="CAPTION" styles="CaptionFont"  /><apply toObject="SUBCAPTION" styles="CaptionFont"  /><apply toObject="Legend" styles="myLegendFont"  /></application></styles></chart>';
 		echo $strxml;
 	}
+	public function countsitepage_muti(){
+		$cate = M("Link")->field("DATE_FORMAT(lastCrawDate,'%Y-%m-%d') day")->where("lastCrawDate >'".date("Y-m-d",strtotime("-7 day"))."'")->group("day")->select();
+		$data =M("Site")->order("id desc")->limit(3)->select();
+		$strxml="<chart showFCMenuItem='0' lineThickness='2' showValues='0' anchorRadius='4' divLineAlpha='20' divLineColor='CC3300' divLineIsDashed='1' showAlternateHGridColor='1' alternateHGridAlpha='5' alternateHGridColor='CC3300' shadowAlpha='40' labelStep='1' numvdivlines='".(sizeof($cate)-2)."' showAlternateVGridColor='1' chartsshowShadow='1' chartRightMargin='20' chartTopMargin='15' chartLeftMargin='0' chartBottomMargin='3' bgColor='FFFFFF' canvasBorderThickness='1' showBorder='0' legendBorderAlpha='0' bgAngle='360' showlegend='1' borderColor='DEF3F3' toolTipBorderColor='cccc99' canvasPadding='0' toolTipBgColor='ffffcc' legendShadow='0' baseFontSize='12' canvasBorderAlpha='20' outCnvbaseFontSize='12' outCnvbaseFontColor='000000' numberScaleValue='10000,1,1,1000' formatNumberScale='1' palette='2'>";
+		$strxml.="<categories>";
+		foreach($cate as $k=>$v){
+			$strxml.="<category label='".$v["day"]."' />";
+		}
+		$strxml.="</categories>";
+		foreach($data as $k=>$v){
+			$strxml.='<dataset seriesName="'.iconv("utf-8","gb2312",$v["siteName"]).'">';
+			foreach ($cate as $key=>$val){
+				$val = M("Link")->where("DATE_FORMAT(lastCrawDate,'%Y-%m-%d') ='".$val["day"]."' and siteId =".$v["id"])->count();
+				$strxml.='<set value="'.$val.'"/>';
+			}
+			$strxml.="</dataset>";
+		}
+		$strxml .='<styles><definition><style name="CaptionFont" type="font" size="12"  /><style name="myLegendFont" type="font" size="12"  /></definition><application><apply toObject="CAPTION" styles="CaptionFont"  /><apply toObject="SUBCAPTION" styles="CaptionFont"  /><apply toObject="Legend" styles="myLegendFont"  /></application></styles></chart>';
+		echo $strxml;
+	}
 	public function countkeypage(){
 		$data =M("KeywordPage")->field("count(1) as num,DATE_FORMAT(checkDate,'%Y-%m-%d') day")->where("checkDate >'".date("Y-m-d",strtotime("-7 day"))."'")->group("day")->select();
-		$strxml="<chart showFCMenuItem='0' lineThickness='2' showValues='0' anchorRadius='4' divLineAlpha='20' divLineColor='CC3300' divLineIsDashed='1' showAlternateHGridColor='1' alternateHGridAlpha='5' alternateHGridColor='CC3300' shadowAlpha='40' labelStep='1' numvdivlines='".(sizeof($data)-2)."' showAlternateVGridColor='1' chartsshowShadow='1' chartRightMargin='20' chartTopMargin='15' chartLeftMargin='0' chartBottomMargin='3' bgColor='FFFFFF' canvasBorderThickness='1' showBorder='0' legendBorderAlpha='0' bgAngle='360' showlegend='0' borderColor='DEF3F3' toolTipBorderColor='cccc99' canvasPadding='0' toolTipBgColor='ffffcc' legendShadow='0' baseFontSize='12' canvasBorderAlpha='20' outCnvbaseFontSize='10' outCnvbaseFontColor='000000' numberScaleValue='10000,1,1,1000' formatNumberScale='1' palette='2'  lineColor='AFD8F8'>";
+		$strxml="<chart showFCMenuItem='0' lineThickness='2' showValues='0' anchorRadius='4' divLineAlpha='20' divLineColor='CC3300' divLineIsDashed='1' showAlternateHGridColor='1' alternateHGridAlpha='5' alternateHGridColor='CC3300' shadowAlpha='40' labelStep='1' numvdivlines='".(sizeof($data)-2)."' showAlternateVGridColor='1' chartsshowShadow='1' chartRightMargin='20' chartTopMargin='15' chartLeftMargin='0' chartBottomMargin='3' bgColor='FFFFFF' canvasBorderThickness='1' showBorder='0' legendBorderAlpha='0' bgAngle='360' showlegend='0' borderColor='DEF3F3' toolTipBorderColor='cccc99' canvasPadding='0' toolTipBgColor='ffffcc' legendShadow='0' baseFontSize='12' canvasBorderAlpha='20' outCnvbaseFontSize='12' outCnvbaseFontColor='000000' numberScaleValue='10000,1,1,1000' formatNumberScale='1' palette='2'  lineColor='AFD8F8'>";
 		$strxml.="<categories>";
 		$strcategory="";
 		$strdataset="";
@@ -155,7 +175,7 @@ class ReportAction extends Action {
 
 	public function countkeywordpage(){
 		$data =M("KeywordPage")->field("count(1) as num,keyword")->group("keyword")->order("num desc")->select();
-		$strxml="<chart showFCMenuItem='0' lineThickness='2' showValues='1' anchorRadius='4' divLineAlpha='20' divLineColor='CC3300' divLineIsDashed='1' showAlternateHGridColor='1' alternateHGridAlpha='5' alternateHGridColor='CC3300' shadowAlpha='40' labelStep='1' numvdivlines='".(sizeof($data)-2)."' showAlternateVGridColor='1' chartsshowShadow='1' chartRightMargin='20' chartTopMargin='15' chartLeftMargin='0' chartBottomMargin='3' bgColor='FFFFFF' canvasBorderThickness='1' showBorder='0' legendBorderAlpha='0' bgAngle='360' showlegend='1' legendPostion='bottom' borderColor='DEF3F3' toolTipBorderColor='cccc99' canvasPadding='0' toolTipBgColor='ffffcc' legendShadow='0' baseFontSize='12' canvasBorderAlpha='20' outCnvbaseFontSize='10' outCnvbaseFontColor='000000' numberScaleValue='10000,1,1,1000' formatNumberScale='1' palette='2'  lineColor='AFD8F8'>";
+		$strxml="<chart showFCMenuItem='0' useRoundEdges='1' lineThickness='2' showValues='1' anchorRadius='4' divLineAlpha='20' divLineColor='CC3300' divLineIsDashed='1' showAlternateHGridColor='1' alternateHGridAlpha='5' alternateHGridColor='CC3300' shadowAlpha='40' labelStep='1' numvdivlines='".(sizeof($data)-2)."' showAlternateVGridColor='1' chartsshowShadow='1' chartRightMargin='20' chartTopMargin='15' chartLeftMargin='0' chartBottomMargin='3' bgColor='FFFFFF' canvasBorderThickness='1' showBorder='0' legendBorderAlpha='0' bgAngle='360' showlegend='1' legendPostion='bottom' borderColor='DEF3F3' toolTipBorderColor='cccc99' canvasPadding='0' toolTipBgColor='ffffcc' legendShadow='0' baseFontSize='12' canvasBorderAlpha='20' outCnvbaseFontSize='12' outCnvbaseFontColor='000000' numberScaleValue='10000,1,1,1000' formatNumberScale='1' palette='2'  lineColor='AFD8F8'>";
 		$strdataset="";
 		foreach($data as $k=>$v){
 			$strdataset.="<set value='".$v["num"]."' label='".iconv("utf-8","gb2312",$v["keyword"])."'  />";
@@ -169,7 +189,7 @@ class ReportAction extends Action {
 		$data =M("KeywordPage")->field("count(1) as num,keyword,siteId")->group("siteId,keyword")->select();
 		$cate = M("KeywordPage")->field("siteId,sitename")->group("siteId")->select();
 		$keyw = M("KeywordPage")->field("keyword")->group("keyword")->select();
-		$strxml="<chart showFCMenuItem='0' lineThickness='2' showValues='1' anchorRadius='4' divLineAlpha='20' divLineColor='CC3300' divLineIsDashed='1' showAlternateHGridColor='1' alternateHGridAlpha='5' alternateHGridColor='CC3300' shadowAlpha='40' labelStep='1' numvdivlines='".(sizeof($data)-2)."' showAlternateVGridColor='1' chartsshowShadow='1' chartRightMargin='20' chartTopMargin='15' chartLeftMargin='0' chartBottomMargin='3' bgColor='FFFFFF' canvasBorderThickness='1' showBorder='0' legendBorderAlpha='0' bgAngle='360' showlegend='1' legendPostion='bottom' borderColor='DEF3F3' toolTipBorderColor='cccc99' canvasPadding='0' toolTipBgColor='ffffcc' legendShadow='0' baseFontSize='12' canvasBorderAlpha='20' outCnvbaseFontSize='10' outCnvbaseFontColor='000000' numberScaleValue='10000,1,1,1000' formatNumberScale='1' palette='2' lineColor='AFD8F8'>";
+		$strxml="<chart showFCMenuItem='0' useRoundEdges='1' lineThickness='2' showValues='1' anchorRadius='4' divLineAlpha='20' divLineColor='CC3300' divLineIsDashed='1' showAlternateHGridColor='1' alternateHGridAlpha='5' alternateHGridColor='CC3300' shadowAlpha='40' labelStep='1' numvdivlines='".(sizeof($data)-2)."' showAlternateVGridColor='1' chartsshowShadow='1' chartRightMargin='20' chartTopMargin='15' chartLeftMargin='0' chartBottomMargin='3' bgColor='FFFFFF' canvasBorderThickness='1' showBorder='0' legendBorderAlpha='0' bgAngle='360' showlegend='1' legendPostion='bottom' borderColor='DEF3F3' toolTipBorderColor='cccc99' canvasPadding='0' toolTipBgColor='ffffcc' legendShadow='0' baseFontSize='12' canvasBorderAlpha='20' outCnvbaseFontSize='12' outCnvbaseFontColor='000000' numberScaleValue='10000,1,1,1000' formatNumberScale='1' palette='2' lineColor='AFD8F8'>";
 		$strcategory="<categories>";
 		$strdataset="";
 		$ary = array();
