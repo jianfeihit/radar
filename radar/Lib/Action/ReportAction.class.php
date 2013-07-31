@@ -40,7 +40,7 @@ class ReportAction extends Action {
 		Vendor ("flashchart.Includes.FusionCharts");
 		$chart_keywordpage =renderChartHTML ( "../Public/Charts/Column2D.swf?ChartNoDataText=%E6%B2%A1%E6%9C%89%E5%8F%AF%E6%98%BE%E7%A4%BA%E7%9A%84%E6%95%B0%E6%8D%AE&PBarLoadingText=%E6%AD%A3%E5%9C%A8%E8%BD%BD%E5%85%A5%E5%9B%BE%E8%A1%A8%EF%BC%8C%E8%AF%B7%E7%A8%8D%E5%80%99&XMLLoadingText=%E6%AD%A3%E5%9C%A8%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE%EF%BC%8C%E8%AF%B7%E7%A8%8D%E5%80%99",
 		urlencode ("__URL__/countkeywordpage"), "", "blockday", "100%", 300, false );
-		$chart_keywordcategory =renderChartHTML ( "../Public/Charts/MSColumn2D.swf?ChartNoDataText=%E6%B2%A1%E6%9C%89%E5%8F%AF%E6%98%BE%E7%A4%BA%E7%9A%84%E6%95%B0%E6%8D%AE&PBarLoadingText=%E6%AD%A3%E5%9C%A8%E8%BD%BD%E5%85%A5%E5%9B%BE%E8%A1%A8%EF%BC%8C%E8%AF%B7%E7%A8%8D%E5%80%99&XMLLoadingText=%E6%AD%A3%E5%9C%A8%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE%EF%BC%8C%E8%AF%B7%E7%A8%8D%E5%80%99",
+		$chart_keywordcategory =renderChartHTML ( "../Public/Charts/StackedColumn2D.swf?ChartNoDataText=%E6%B2%A1%E6%9C%89%E5%8F%AF%E6%98%BE%E7%A4%BA%E7%9A%84%E6%95%B0%E6%8D%AE&PBarLoadingText=%E6%AD%A3%E5%9C%A8%E8%BD%BD%E5%85%A5%E5%9B%BE%E8%A1%A8%EF%BC%8C%E8%AF%B7%E7%A8%8D%E5%80%99&XMLLoadingText=%E6%AD%A3%E5%9C%A8%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE%EF%BC%8C%E8%AF%B7%E7%A8%8D%E5%80%99",
 		urlencode ("__URL__/countkeywordcategory"), "", "blockday", "100%", 300, false );
 		$this->data = M("Site")->select();
 		$this->assign("chart_keywordpage",$chart_keywordpage);
@@ -105,7 +105,7 @@ class ReportAction extends Action {
 	}
 
 	public function counthourpage(){
-		$data =M("Link")->field("count(1) as num,DATE_FORMAT(lastCrawDate,'%H') hour")->group("hour")->select();
+		$data =M("Link")->field("count(1) as num,DATE_FORMAT(lastCrawDate,'%H') hour")->where("DATE_FORMAT(lastCrawDate,'%Y-%m-%d') ='".date("Y-m-d")."'")->group("hour")->select();
 		$strxml="<chart showFCMenuItem='0' lineThickness='2' showValues='0' anchorRadius='4' divLineAlpha='20' divLineColor='CC3300' divLineIsDashed='1' showAlternateHGridColor='1' alternateHGridAlpha='5' alternateHGridColor='CC3300' shadowAlpha='40' labelStep='1' numvdivlines='".(sizeof($data)-2)."' showAlternateVGridColor='1' chartsshowShadow='1' chartRightMargin='20' chartTopMargin='15' chartLeftMargin='0' chartBottomMargin='3' bgColor='FFFFFF' canvasBorderThickness='1' showBorder='0' legendBorderAlpha='0' bgAngle='360' showlegend='0' borderColor='DEF3F3' toolTipBorderColor='cccc99' canvasPadding='0' toolTipBgColor='ffffcc' legendShadow='0' baseFontSize='12' canvasBorderAlpha='20' outCnvbaseFontSize='12' outCnvbaseFontColor='000000' numberScaleValue='10000,1,1,1000' formatNumberScale='1' palette='2'  lineColor='AFD8F8'>";
 		$strxml.="<categories>";
 		$strcategory="";
@@ -138,7 +138,7 @@ class ReportAction extends Action {
 	}
 	public function countsitepage_muti(){
 		$cate = M("Link")->field("DATE_FORMAT(lastCrawDate,'%Y-%m-%d') day")->where("lastCrawDate >'".date("Y-m-d",strtotime("-7 day"))."'")->group("day")->select();
-		$data =M("Site")->order("id desc")->limit(3)->select();
+		$data =M("Site")->order("id desc")->limit(5)->select();
 		$strxml="<chart showFCMenuItem='0' lineThickness='2' showValues='0' anchorRadius='4' divLineAlpha='20' divLineColor='CC3300' divLineIsDashed='1' showAlternateHGridColor='1' alternateHGridAlpha='5' alternateHGridColor='CC3300' shadowAlpha='40' labelStep='1' numvdivlines='".(sizeof($cate)-2)."' showAlternateVGridColor='1' chartsshowShadow='1' chartRightMargin='20' chartTopMargin='15' chartLeftMargin='0' chartBottomMargin='3' bgColor='FFFFFF' canvasBorderThickness='1' showBorder='0' legendBorderAlpha='0' bgAngle='360' showlegend='1' borderColor='DEF3F3' toolTipBorderColor='cccc99' canvasPadding='0' toolTipBgColor='ffffcc' legendShadow='0' baseFontSize='12' canvasBorderAlpha='20' outCnvbaseFontSize='12' outCnvbaseFontColor='000000' numberScaleValue='10000,1,1,1000' formatNumberScale='1' palette='2'>";
 		$strxml.="<categories>";
 		foreach($cate as $k=>$v){
@@ -189,7 +189,7 @@ class ReportAction extends Action {
 		$data =M("KeywordPage")->field("count(1) as num,keyword,siteId")->group("siteId,keyword")->select();
 		$cate = M("KeywordPage")->field("siteId,sitename")->group("siteId")->select();
 		$keyw = M("KeywordPage")->field("keyword")->group("keyword")->select();
-		$strxml="<chart showFCMenuItem='0' useRoundEdges='1' lineThickness='2' showValues='1' anchorRadius='4' divLineAlpha='20' divLineColor='CC3300' divLineIsDashed='1' showAlternateHGridColor='1' alternateHGridAlpha='5' alternateHGridColor='CC3300' shadowAlpha='40' labelStep='1' numvdivlines='".(sizeof($data)-2)."' showAlternateVGridColor='1' chartsshowShadow='1' chartRightMargin='20' chartTopMargin='15' chartLeftMargin='0' chartBottomMargin='3' bgColor='FFFFFF' canvasBorderThickness='1' showBorder='0' legendBorderAlpha='0' bgAngle='360' showlegend='1' legendPostion='bottom' borderColor='DEF3F3' toolTipBorderColor='cccc99' canvasPadding='0' toolTipBgColor='ffffcc' legendShadow='0' baseFontSize='12' canvasBorderAlpha='20' outCnvbaseFontSize='12' outCnvbaseFontColor='000000' numberScaleValue='10000,1,1,1000' formatNumberScale='1' palette='2' lineColor='AFD8F8'>";
+		$strxml="<chart showFCMenuItem='0' useRoundEdges='1' lineThickness='2' showvalues='1' showSum='1' anchorRadius='4' divLineAlpha='20' divLineColor='CC3300' divLineIsDashed='1' showAlternateHGridColor='1' alternateHGridAlpha='5' alternateHGridColor='CC3300' shadowAlpha='40' labelStep='1' numvdivlines='".(sizeof($data)-2)."' showAlternateVGridColor='1' chartsshowShadow='1' chartRightMargin='20' chartTopMargin='15' chartLeftMargin='0' chartBottomMargin='3' bgColor='FFFFFF' canvasBorderThickness='1' showBorder='0' legendBorderAlpha='0' bgAngle='360' showlegend='1' legendPostion='bottom' borderColor='DEF3F3' toolTipBorderColor='cccc99' canvasPadding='0' toolTipBgColor='ffffcc' legendShadow='0' baseFontSize='12' canvasBorderAlpha='20' outCnvbaseFontSize='12' outCnvbaseFontColor='000000' numberScaleValue='10000,1,1,1000' formatNumberScale='1' palette='2' lineColor='AFD8F8'>";
 		$strcategory="<categories>";
 		$strdataset="";
 		$ary = array();
@@ -199,7 +199,7 @@ class ReportAction extends Action {
 		}
 		$strxml.=$strcategory."</categories>";
 		foreach($keyw as $k=>$v){
-			$strdataset.="<dataset seriesName='".iconv("utf-8","gb2312",$v["keyword"])."' showValues='1'>";
+			$strdataset.="<dataset seriesName='".iconv("utf-8","gb2312",$v["keyword"])."' showValues='0'>";
 			foreach($cate as $kk=>$vv){
 				$count = M("KeywordPage")->where("siteId=".$vv["siteId"]." and keyword='".$v["keyword"]."'")->count();
 				if($count){
