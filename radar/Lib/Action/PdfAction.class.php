@@ -1,5 +1,14 @@
 <?php
 class PdfAction extends Action {
+	public function __construct(){
+		parent::__construct();
+		$this->is_login();
+	}
+	public function is_login(){
+		if (!session("?loginuser")){
+			$this->redirect("Login/show","",0,"");
+		}
+	}
 	public function generatePdf(){
 		$id = I("get.id");
 		$strcontent = A("Warn")->getMailstr();

@@ -39,7 +39,7 @@
 									<volist name="hits" id="p">
 									<li>
 										<div class="news-item-detail">
-											<a href="javascript:;" class="news-item-title">{$p.title|highlightWord=$q}</a>
+											<a href="javascript:;" class="news-item-title">{$p.title|heightlighttext=$q,###}</a>
 											<p class="news-item-preview">{$p.abstraction}</p>
 											IP:{$p.siteIP} {$p.city} {$p.siteNsp} <a href="__URL__/viewSnap?id={$p.linkId}&q={$q}"
 												class="news-item-title">查看快照</a>

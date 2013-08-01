@@ -11,10 +11,10 @@ class SearchAction extends Action {
             $this->error("搜索词不能为空！");
         }
         import('ORG.Util.Page');
-        $Page = new Page(10,10);
+    //    $Page = new Page(10,10);
         $seacher = C("SEARCHER");
-//        echo $seacher."/search/detailSearch?query=".$query."&pageStart=".($_GET["_URL_"][5]);
-        $resp = file_get_contents($seacher."/search/detailSearch?query=".$query."&pageStart=".($_GET["_URL_"][5]));
+       // echo $seacher."/search/detailSearch?query=".$query."&pageStart=".($_GET["_URL_"][5]);
+        $resp = file_get_contents($seacher."/search/detailSearch?query=".$query."&pageStart=".($_GET["_URL_"][5]?$_GET["_URL_"][5]:1));
         $ret = json_decode($resp, true);
         $this->assign('hits',$ret["result"]);
         $this->assign('q',$query);
@@ -31,8 +31,8 @@ class SearchAction extends Action {
         if(empty($linkId)){
             $this->error("搜索词不能为空！");
         }
-        $link=M("link")->where("id=966")->find();
-        $snapshort = file_get_contents($link[snapPath]);
+        $link=M("link")->where("id=$linkId")->find();
+        $snapshort = file_get_contents($link["snapPath"]);
 		$snapshort = highlight($snapshort,split("\\|", $q));
 		$this->assign('snapshort',$snapshort);
 		$this->display('./Tpl/search/viewsnapshort.html');

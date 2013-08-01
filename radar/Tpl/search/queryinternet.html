@@ -50,8 +50,8 @@
 								<volist name="vo" id="p">
 								<li>
 									<div class="news-item-detail">
-										<a href="{$p.link}" target="_blank" class="news-item-title">{$p.title|highlightWord=$q}</a>
-										<p class="news-item-preview">{$p.content|highlightWord=$q}</p>
+										<a href="{$p.link}" target="_blank" class="news-item-title">{$p.title|heightlighttext=$q,###}</a>
+										<p class="news-item-preview">{$p.content|heightlighttext=$q,###}</p>
 									</div>
 								</li>
 								</volist>
