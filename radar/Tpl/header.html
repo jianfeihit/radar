@@ -10,10 +10,10 @@
                 <ul class="nav pull-right">
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle admin" data-toggle="dropdown">
-                            <i class="icon-user"></i>{$Think.session.loginuser.userName}<b class="caret"></b>
+                            <i class="icon-user"></i>{$Think.session.loginuser.userName}（<if condition="$Think.session.loginuser.userType eq 2">审计员<elseif condition="$Think.session.loginuser.userType eq 1" />管理员<else />普通用户</if>）<b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="javascript:;">个人信息</a></li>
+                            <li><a href="{$Think.session.loginuser.userId|U="Account/edit",'userid='.###}">个人信息</a></li>
                             <li class="divider"></li>
                             <li><a href="{:U('Login/loginout')}">退出</a></li>
                         </ul>

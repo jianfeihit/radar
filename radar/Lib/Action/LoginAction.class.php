@@ -15,7 +15,11 @@ class LoginAction extends Action {
 		if($ck){
 			session("loginuser",$ck);
 			write_log("系统登录");
-			$this->redirect("Index/index","",0,"");
+			if($ck["userType"]==2){
+				$this->redirect("System/auditlog","",0,"");
+			}else{
+				$this->redirect("Index/index","",0,"");
+			}
 		}else{
 			$this->error("用户ID或密码错误！");
 		}
