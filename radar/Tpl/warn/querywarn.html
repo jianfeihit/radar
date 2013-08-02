@@ -39,9 +39,10 @@
 							<thead>
 								<tr>
 									<th width="2%">
-										<input type="checkbox" name="selectall" id="selectall"></th>
+									<input type="checkbox" name="selectall" id="selectall"></th>
 									<th width="11%">网站名称</th>
-									<th width="8%">关键词</th>
+									<th width="6%">告警类型</th>
+									<th width="7%">关键词</th>
 									<th width="15%">新闻标题</th>
 									<th width="18%">新闻摘要</th>
 									<th width="13%">检测时间</th>
@@ -54,8 +55,15 @@
 								<volist name="kdata" id="v">
 									<tr>
 										<td>
-											<input type="checkbox" name="warnids[]" value="{$v.id}"></td>
+										<input type="checkbox" name="warnids[]" value="{$v.id}"></td>
 										<td>{$v.siteName}</td>
+										<td>
+										<if condition="$v.warnType == 0">
+											敏感词告警
+										<else />
+											附件告警	
+										</if>
+										</td>
 										<td>{$v.keyword}</td>
 										<td>{$v.title}</td>
 										<if condition="strlen('$v.digist') lt 50">
