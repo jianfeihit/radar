@@ -41,7 +41,7 @@
 										<div class="news-item-detail">
 											<a href="javascript:;" class="news-item-title">{$p.title|heightlighttext=$q,###}</a>
 											<p class="news-item-preview">{$p.abstraction}</p>
-											IP:{$p.siteIP} {$p.city} {$p.siteNsp} <a href="__URL__/viewSnap?id={$p.linkId}&q={$q}"
+											IP:{$p.siteIP} {$p.city} {$p.siteNsp} 抓取时间：{$p['crawleddate']/1000|date="Y-m-d",###} <a href="__URL__/viewSnap?id={$p.linkId}&q={$q}"
 												class="news-item-title">查看快照</a>
 										</div>
 									</li>
