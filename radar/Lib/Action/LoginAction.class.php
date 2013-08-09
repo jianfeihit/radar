@@ -4,6 +4,14 @@ class LoginAction extends Action {
 		if(session("?loginuser")){
 			$this->redirect("Index/index","",0,"");
 		}else{
+			$this->redirect("Login/index","",0,"");
+			//$this->display();
+		}
+	}
+	public function index(){
+		if(session("?loginuser")){
+			$this->redirect("Index/index","",0,"");
+		}else{
 			$this->display();
 		}
 	}

@@ -1,6 +1,14 @@
 <?php
 class SiteAction extends Action {
-
+	public function __construct(){
+		parent::__construct();
+		$this->is_login();
+	}
+	public function is_login(){
+		if (!session("?loginuser")){
+			$this->redirect("Login/show","",0,"");
+		}
+	}
 	public function query(){
 		header("Content-Type:text/html;Charset=utf-8");
 		$siteName = trim(strip_tags(I("siteName")));
@@ -31,7 +39,7 @@ class SiteAction extends Action {
 		$kobj = M("keyword");
 		$keywords = $kobj->select();
 		$this->assign('keywords',$keywords);
-
+		write_log("编辑站点 ID：".$id);
 		$this->display('./Tpl/site/addsite.html');
 	}
 
@@ -47,11 +55,11 @@ class SiteAction extends Action {
 		$id = trim($_GET["_URL_"][2]);
 		$state = trim($_GET["_URL_"][3]);
 
-		echo $id.$state;
+		//echo $id.$state;
 		$condition['id'] = $id;
 		$data['state'] = $state;
 		$result = $kdata->where($condition)->save($data);
-
+		write_log("更改站点状态 ID：".$id." STATE:".$state);
 		if($result){
 			$this->success('修改成功', '__URL__/query');
 		}else{
@@ -99,10 +107,10 @@ class SiteAction extends Action {
 		$netsp = $ispinfo->isp;
 		$province = $ispinfo->province;
 		$city = $ispinfo->city;
-		
+
 		$positons = getPostion($ip);
-        $lat = $positons["content"]["point"]["x"];
-        $lng = $positons["content"]["point"]["y"];
+		$lat = $positons["content"]["point"]["x"];
+		$lng = $positons["content"]["point"]["y"];
 
 		$ary=array(
             'siteName'=>$siteName,
@@ -140,7 +148,7 @@ class SiteAction extends Action {
 			$siteId=$kdata->add($ary);
 			$link['siteId']=$siteId;
 		}
-
+		write_log("新增站点 ID：".($siteId?$siteId:$id)." 名称:".$siteName." URL:".$feedUrl);
 		M("link")->add($link);
 		$this->success('新增成功', '__URL__/query');
 	}

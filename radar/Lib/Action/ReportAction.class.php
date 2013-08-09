@@ -1,6 +1,14 @@
 <?php
 class ReportAction extends Action {
-
+	public function __construct(){
+		parent::__construct();
+		$this->is_login();
+	}
+	public function is_login(){
+		if (!session("?loginuser")){
+			$this->redirect("Login/show","",0,"");
+		}
+	}
 	public function open(){
 		Vendor ("flashchart.Includes.FusionChartsHtmlFive");
 		$count_common = M("Site")->where("state=0")->count();
@@ -207,7 +215,7 @@ class ReportAction extends Action {
 		$strxml="<chart showFCMenuItem='0' useRoundEdges='1' lineThickness='2' showValues='1' anchorRadius='4' divLineAlpha='20' divLineColor='CC3300' divLineIsDashed='1' showAlternateHGridColor='1' alternateHGridAlpha='5' alternateHGridColor='CC3300' shadowAlpha='40' labelStep='1' numvdivlines='".(sizeof($data)-2)."' showAlternateVGridColor='1' chartsshowShadow='1' chartRightMargin='20' chartTopMargin='15' chartLeftMargin='0' chartBottomMargin='3' bgColor='FFFFFF' canvasBorderThickness='1' showBorder='0' legendBorderAlpha='0' bgAngle='360' showlegend='1' legendPostion='bottom' borderColor='DEF3F3' toolTipBorderColor='cccc99' canvasPadding='0' toolTipBgColor='ffffcc' legendShadow='0' baseFontSize='12' canvasBorderAlpha='20' outCnvbaseFontSize='12' outCnvbaseFontColor='000000' numberScaleValue='10000,1,1,1000' formatNumberScale='1' palette='2'  lineColor='AFD8F8'>";
 		$strdataset="";
 		foreach($data as $k=>$v){
-			$strdataset.="<set value='".$v["num"]."' label='".iconv("utf-8","gb2312",$v["keyword"])."'  />";
+			$strdataset.="<set value='".$v["num"]."' label='".iconv("utf-8","gb2312",$v["keyword"]?$v["keyword"]:"附件告警")."'  />";
 		}
 		$strxml.=$strdataset;
 		$strxml.='<styles><definition><style name="CaptionFont" type="font" size="12"  /><style name="myLegendFont" type="font" size="12"  /></definition><application><apply toObject="CAPTION" styles="CaptionFont"  /><apply toObject="SUBCAPTION" styles="CaptionFont"  /><apply toObject="Legend" styles="myLegendFont"  /></application></styles></chart>';

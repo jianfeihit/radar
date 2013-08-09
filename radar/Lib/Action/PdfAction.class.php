@@ -12,6 +12,13 @@ class PdfAction extends Action {
 	public function generatePdf(){
 		$id = I("get.id");
 		$strcontent = A("Warn")->getMailstr();
+		$title = M("KeywordPage")->field("title,link")->where("id in($id)")->select();
+		$desc=array();
+		foreach($title as $val)
+		{
+			$desc[]="标题：".$val["title"]." URL:".$val["link"];
+		}
+		$descstr = implode("<br />",$desc);
 		vendor('tcpdf.tcpdf');
 		$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 		$pdf->SetCreator(PDF_CREATOR);
@@ -56,10 +63,13 @@ EOF;
 		$ary=array(
 			'title'=>$pdfTitle,
 			'path'=>$pdfFile,
+			'desc'=>$descstr,
 			'operator'=>$loginuser["userName"],
 			'createTime'=>date("Y-m-d H:i:s")
 		);
-		M("bulletins")->add($ary);
+		$rid = M("bulletins")->add($ary);
+		M("KeywordPage")->where("id in($id)")->setField("isReport",1);
+		write_log("简报生成 下载ID：".($rid)." 名称:".$pdfTitle."数据集合：".$id);
 		$pdf->Output($pdfFile, 'FD');
 		//$pdf->Output('report.pdf', 'D');
 	}

@@ -41,14 +41,14 @@
 									<th width="2%">
 									<input type="checkbox" name="selectall" id="selectall"></th>
 									<th width="11%">网站名称</th>
-									<th width="6%">告警类型</th>
+									<th width="8%">告警类型</th>
 									<th width="7%">关键词</th>
 									<th width="15%">新闻标题</th>
 									<th width="18%">新闻摘要</th>
 									<th width="13%">检测时间</th>
-									<th width="7%">处理标志</th>
-									<th width="7%">简报标志</th>
-									<th width="7%" class="td-actions">操作</th>
+									<th width="7%">状态</th>
+									<th width="6%">简报</th>
+									<th width="10%" class="td-actions">操作</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -59,9 +59,9 @@
 										<td>{$v.siteName}</td>
 										<td>
 										<if condition="$v.warnType == 0">
-											敏感词告警
+											敏感词
 										<else />
-											附件告警	
+											附件	
 										</if>
 										</td>
 										<td>{$v.keyword}</td>
@@ -74,18 +74,9 @@
 										<td>{$v.checkDate}</td>
 										<td><if condition="$v.isHandle eq 1"><span class="label label-success label-mini" id="label{$v.id}">已处理</span><else /><span class="label label-warning label-mini" id="label{$v.id}">未处理</span></if></td>
 										<td><span class="label label-info"><if condition="$v.isReport eq 1">已生成<else />未生成 </if></span></td>
-										<td class="td-actions">
-											<a href="javascript:;" class="btn btn-small btn-warning warn_sendmailbtn" warndata={$v.id}> <i class="btn-icon-only icon-envelope" title="发送通知"></i>
-											</a>
-											<a href="__URL__/view?id={$v.id}" class="btn btn-small btn-warning">
-												<i class="btn-icon-only icon-zoom-in" title="查看详情"></i>
-											</a>
-											<!-- <a href="javascript:;" class="btn btn-small btn-warning">
+										<td class="td-actions"><a href="javascript:;" class="btn btn-small btn-warning warn_sendmailbtn" warndata={$v.id}> <i class="btn-icon-only icon-envelope" title="发送通知"></i></a><a href="__URL__/view?id={$v.id}" class="btn btn-small btn-warning"><i class="btn-icon-only icon-zoom-in" title="查看详情"></i></a><!-- <a href="javascript:;" class="btn btn-small btn-warning">
 												<i class="btn-icon-only icon-refresh" title="重新检测"></i>
-											</a> -->
-											<a href="{$v.link}" target="_blank" class="btn btn-small btn-warning">
-												<i class="btn-icon-only icon-share-alt" title="查看链接"></i>
-											</a>
+											</a> --><a href="{$v.link}" target="_blank" class="btn btn-small btn-warning"><i class="btn-icon-only icon-share-alt" title="查看链接"></i></a>
 										</td>
 									</tr>
 								</volist>
